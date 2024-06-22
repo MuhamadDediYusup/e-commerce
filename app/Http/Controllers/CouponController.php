@@ -45,10 +45,10 @@ class CouponController extends Controller
         $data=$request->all();
         $status=Coupon::create($data);
         if($status){
-            request()->session()->flash('success','Coupon Successfully added');
+            request()->session()->flash('success','Kupon Berhasil Ditambahkan');
         }
         else{
-            request()->session()->flash('error','Please try again!!');
+            request()->session()->flash('error','Error, Silahkan coba lagi');
         }
         return redirect()->route('coupon.index');
     }
@@ -76,7 +76,7 @@ class CouponController extends Controller
             return view('backend.coupon.edit')->with('coupon',$coupon);
         }
         else{
-            return view('backend.coupon.index')->with('error','Coupon not found');
+            return view('backend.coupon.index')->with('error','Data tidak ditemukan');
         }
     }
 
@@ -97,16 +97,16 @@ class CouponController extends Controller
             'status'=>'required|in:active,inactive'
         ]);
         $data=$request->all();
-        
+
         $status=$coupon->fill($data)->save();
         if($status){
-            request()->session()->flash('success','Coupon Successfully updated');
+            request()->session()->flash('success','Kupon Berhasil Diubah');
         }
         else{
-            request()->session()->flash('error','Please try again!!');
+            request()->session()->flash('error','Error, Silahkan coba lagi');
         }
         return redirect()->route('coupon.index');
-        
+
     }
 
     /**
@@ -121,10 +121,10 @@ class CouponController extends Controller
         if($coupon){
             $status=$coupon->delete();
             if($status){
-                request()->session()->flash('success','Coupon successfully deleted');
+                request()->session()->flash('success','Kupon Berhasil Dihapus');
             }
             else{
-                request()->session()->flash('error','Error, Please try again');
+                request()->session()->flash('error','Error, Silahkan coba lagi');
             }
             return redirect()->route('coupon.index');
         }

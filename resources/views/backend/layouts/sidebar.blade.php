@@ -15,7 +15,7 @@
     <li class="nav-item active">
         <a class="nav-link" href="{{ route('admin') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span></a>
+            <span>Dasbor</span></a>
     </li>
 
     <!-- Divider -->
@@ -117,28 +117,30 @@
             <span>Reviews</span></a>
     </li>
 
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('coupon.index') }}">
+            <i class="fas fa-table"></i>
+            <span>Kupon</span></a>
+    </li>
+
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
     <!-- Heading -->
     <div class="sidebar-heading">
-        General Settings
+        Pengaturan Website
     </div>
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('coupon.index') }}">
-            <i class="fas fa-table"></i>
-            <span>Coupon</span></a>
-    </li>
+
     <!-- Users -->
     <li class="nav-item">
         <a class="nav-link" href="{{ route('users.index') }}">
             <i class="fas fa-users"></i>
-            <span>Users</span></a>
+            <span>Manajemen Pengguna</span></a>
     </li>
     <!-- General settings -->
     <li class="nav-item">
         <a class="nav-link" href="{{ route('settings') }}">
             <i class="fas fa-cog"></i>
-            <span>Settings</span></a>
+            <span>Website</span></a>
     </li>
 
     <!-- Sidebar Toggler (Sidebar) -->
