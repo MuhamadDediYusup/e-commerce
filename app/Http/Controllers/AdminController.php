@@ -70,10 +70,10 @@ class AdminController extends Controller
         // return $settings;
         $status=$settings->fill($data)->save();
         if($status){
-            request()->session()->flash('success','Setting successfully updated');
+            request()->session()->flash('success','Pengaturan Website Berhasil Diubah');
         }
         else{
-            request()->session()->flash('error','Please try again');
+            request()->session()->flash('error','Error terjadi saat mengubah pengaturan website');
         }
         return redirect()->route('admin');
     }
