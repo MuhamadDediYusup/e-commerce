@@ -52,10 +52,10 @@ class UsersController extends Controller
         $status=User::create($data);
         // dd($status);
         if($status){
-            request()->session()->flash('success','Successfully added user');
+            request()->session()->flash('success','Pengguna Berhasil Ditambahkan');
         }
         else{
-            request()->session()->flash('error','Error occurred while adding user');
+            request()->session()->flash('error','Error terjadi saat menambahkan pengguna');
         }
         return redirect()->route('users.index');
 
@@ -105,13 +105,13 @@ class UsersController extends Controller
         // dd($request->all());
         $data=$request->all();
         // dd($data);
-        
+
         $status=$user->fill($data)->save();
         if($status){
-            request()->session()->flash('success','Successfully updated');
+            request()->session()->flash('success','Pengguna Berhasil Diubah');
         }
         else{
-            request()->session()->flash('error','Error occured while updating');
+            request()->session()->flash('error','Error terjadi saat mengubah pengguna');
         }
         return redirect()->route('users.index');
 
@@ -128,10 +128,10 @@ class UsersController extends Controller
         $delete=User::findorFail($id);
         $status=$delete->delete();
         if($status){
-            request()->session()->flash('success','User Successfully deleted');
+            request()->session()->flash('success','Pengguna Berhasil Dihapus');
         }
         else{
-            request()->session()->flash('error','There is an error while deleting users');
+            request()->session()->flash('error','Error terjadi saat menghapus pengguna');
         }
         return redirect()->route('users.index');
     }
