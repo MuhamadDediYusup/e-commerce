@@ -107,9 +107,6 @@
     Route::resource('/review', 'ProductReviewController');
     Route::post('product/{slug}/review', [ProductReviewController::class, 'store'])->name('review.store');
 
-// Post Comment
-    Route::post('post/{slug}/comment', [PostCommentController::class, 'store'])->name('post-comment.store');
-    Route::resource('/comment', 'PostCommentController');
 // Coupon
     Route::post('/coupon-store', [CouponController::class, 'couponStore'])->name('coupon-store');
 // Payment
@@ -138,12 +135,6 @@
         Route::resource('/product', 'ProductController');
         // Ajax for sub category
         Route::post('/category/{id}/child', 'CategoryController@getChildByParent');
-        // POST category
-        Route::resource('/post-category', 'PostCategoryController');
-        // Post tag
-        Route::resource('/post-tag', 'PostTagController');
-        // Post
-        Route::resource('/post', 'PostController');
         // Message
         Route::resource('/message', 'MessageController');
         Route::get('/message/five', [MessageController::class, 'messageFive'])->name('messages.five');
