@@ -69,15 +69,15 @@
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="{{ route('admin-profile') }}">
                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Profile
+                    Profil
                 </a>
                 <a class="dropdown-item" href="{{ route('change.password.form') }}">
                     <i class="fas fa-key fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Change Password
+                    Ganti Password
                 </a>
                 <a class="dropdown-item" href="{{ route('settings') }}">
                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Settings
+                    Pengaturan
                 </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="{{ route('logout') }}"
