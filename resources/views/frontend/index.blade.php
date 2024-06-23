@@ -294,7 +294,7 @@
                             <div class="quickview-peragraph">
                                 <p>{!! html_entity_decode($product->summary) !!}</p>
                             </div>
-                            @if($product->size)
+                            {{-- @if($product->size)
                             <div class="size">
                                 <div class="row">
                                     <div class="col-lg-6 col-12">
@@ -310,7 +310,7 @@
                                         </select>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                             @endif
                             <form action="{{route('single-add-to-cart')}}" method="POST" class="mt-4">
                                 @csrf
