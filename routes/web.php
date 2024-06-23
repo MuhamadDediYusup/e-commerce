@@ -100,12 +100,9 @@ Route::post('/subscribe', [FrontendController::class, 'subscribe'])->name('subsc
 Route::resource('/review', 'ProductReviewController');
 Route::post('product/{slug}/review', [ProductReviewController::class, 'store'])->name('review.store');
 
-<<<<<<< Updated upstream
-=======
 // Post Comment
 Route::post('post/{slug}/comment', [PostCommentController::class, 'store'])->name('post-comment.store');
 Route::resource('/comment', 'PostCommentController');
->>>>>>> Stashed changes
 // Coupon
 Route::post('/coupon-store', [CouponController::class, 'couponStore'])->name('coupon-store');
 // Payment
@@ -116,35 +113,6 @@ Route::get('payment/success', [PayPalController::class, 'success'])->name('payme
 
 // Backend section start
 
-<<<<<<< Updated upstream
-    Route::group(['prefix' => '/admin', 'middleware' => ['auth', 'admin']], function () {
-        Route::get('/', [AdminController::class, 'index'])->name('admin');
-        Route::get('/file-manager', function () {
-            return view('backend.layouts.file-manager');
-        })->name('file-manager');
-        // user route
-        Route::resource('users', 'UsersController');
-        // Banner
-        Route::resource('banner', 'BannerController');
-        // Profile
-        Route::get('/profile', [AdminController::class, 'profile'])->name('admin-profile');
-        Route::post('/profile/{id}', [AdminController::class, 'profileUpdate'])->name('profile-update');
-        // Category
-        Route::resource('/category', 'CategoryController');
-        // Product
-        Route::resource('/product', 'ProductController');
-        // Ajax for sub category
-        Route::post('/category/{id}/child', 'CategoryController@getChildByParent');
-        // Order
-        Route::resource('/order', 'OrderController');
-        // Shipping
-        Route::resource('/shipping', 'ShippingController');
-        // Coupon
-        Route::resource('/coupon', 'CouponController');
-        // Settings
-        Route::get('settings', [AdminController::class, 'settings'])->name('settings');
-        Route::post('setting/update', [AdminController::class, 'settingsUpdate'])->name('settings.update');
-=======
 Route::group(['prefix' => '/admin', 'middleware' => ['auth', 'admin']], function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin');
     Route::get('/file-manager', function () {
@@ -184,7 +152,6 @@ Route::group(['prefix' => '/admin', 'middleware' => ['auth', 'admin']], function
     // Settings
     Route::get('settings', [AdminController::class, 'settings'])->name('settings');
     Route::post('setting/update', [AdminController::class, 'settingsUpdate'])->name('settings.update');
->>>>>>> Stashed changes
 
     // Notification
     Route::get('/notification/{id}', [NotificationController::class, 'show'])->name('admin.notification');

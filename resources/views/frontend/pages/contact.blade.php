@@ -1,5 +1,5 @@
 @extends('frontend.layouts.master')
-
+@section('title','Berkah Tani | Produk')
 @section('main-content')
 <!-- Breadcrumbs -->
 <div class="breadcrumbs">
