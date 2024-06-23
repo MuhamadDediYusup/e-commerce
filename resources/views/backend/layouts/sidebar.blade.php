@@ -38,13 +38,13 @@
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
             aria-expanded="true" aria-controls="collapseTwo">
             <i class="fas fa-image"></i>
-            <span>Banners</span>
+            <span>Banner</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Banner Options:</h6>
-                <a class="collapse-item" href="{{ route('banner.index') }}">Banners</a>
-                <a class="collapse-item" href="{{ route('banner.create') }}">Add Banners</a>
+                <h6 class="collapse-header">Pilihan Banner:</h6>
+                <a class="collapse-item" href="{{ route('banner.index') }}">Daftar Banner</a>
+                <a class="collapse-item" href="{{ route('banner.create') }}">Tambah Banner</a>
             </div>
         </div>
     </li>
@@ -106,7 +106,7 @@
     <li class="nav-item">
         <a class="nav-link" href="{{ route('order.index') }}">
             <i class="fas fa-hammer fa-chart-area"></i>
-            <span>Orders</span>
+            <span>Pesanan</span>
         </a>
     </li>
 
@@ -114,7 +114,7 @@
     <li class="nav-item">
         <a class="nav-link" href="{{ route('review.index') }}">
             <i class="fas fa-comments"></i>
-            <span>Reviews</span></a>
+            <span>Penilaian</span></a>
     </li>
 
     <li class="nav-item">
