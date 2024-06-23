@@ -310,8 +310,8 @@
                                         </select>
                                     </div>
                                 </div>
-                            </div> --}}
-                            @endif
+                            </div>
+                            @endif --}}
                             <form action="{{route('single-add-to-cart')}}" method="POST" class="mt-4">
                                 @csrf
                                 <div class="quantity">
