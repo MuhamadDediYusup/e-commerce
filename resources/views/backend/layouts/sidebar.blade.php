@@ -75,13 +75,13 @@
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#productCollapse"
             aria-expanded="true" aria-controls="productCollapse">
             <i class="fas fa-cubes"></i>
-            <span>Products</span>
+            <span>Produk</span>
         </a>
         <div id="productCollapse" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Product Options:</h6>
-                <a class="collapse-item" href="{{ route('product.index') }}">Products</a>
-                <a class="collapse-item" href="{{ route('product.create') }}">Add Product</a>
+                <h6 class="collapse-header">Pilihan Produk:</h6>
+                <a class="collapse-item" href="{{ route('product.index') }}">Daftar Produk</a>
+                <a class="collapse-item" href="{{ route('product.create') }}">Tambah Produk</a>
             </div>
         </div>
     </li>

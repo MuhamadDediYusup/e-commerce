@@ -135,10 +135,6 @@
         Route::resource('/product', 'ProductController');
         // Ajax for sub category
         Route::post('/category/{id}/child', 'CategoryController@getChildByParent');
-        // Message
-        Route::resource('/message', 'MessageController');
-        Route::get('/message/five', [MessageController::class, 'messageFive'])->name('messages.five');
-
         // Order
         Route::resource('/order', 'OrderController');
         // Shipping

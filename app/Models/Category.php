@@ -43,11 +43,12 @@ class Category extends Model
         // return $slug;
         return Category::with('sub_products')->where('slug',$slug)->first();
     }
-    public static function countActiveCategory(){
-        $data=Category::where('status','active')->count();
-        if($data){
-            return $data;
-        }
-        return 0;
-    }
+
+    // public static function countActiveCategory(){
+    //     $data=Category::where('status','active')->count();
+    //     if($data){
+    //         return $data;
+    //     }
+    //     return 0;
+    // }
 }

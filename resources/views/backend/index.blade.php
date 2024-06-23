@@ -19,7 +19,7 @@
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Kategori</div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                    {{ \App\Models\Category::countActiveCategory() }}</div>
+                                    {{ \App\Models\Category::count() }}</div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-sitemap fa-2x text-gray-300"></i>
