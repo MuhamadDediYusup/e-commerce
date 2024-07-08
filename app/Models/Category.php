@@ -36,7 +36,7 @@ class Category extends Model
     }
     public function products()
     {
-        return $this->hasMany('App\Models\Product', 'cat_id', 'id')->where('status', 'active');
+        return $this->hasMany('App\Models\Product', 'category_id', 'id')->where('status', 'active');
     }
     public function sub_products()
     {
