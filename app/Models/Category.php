@@ -23,12 +23,12 @@ class Category extends Model
     }
     public static function getChildByParentID($id)
     {
-        return Category::where('parent_id', $id)->orderBy('id', 'ASC')->pluck('title', 'id');
+        return Category::where('id', $id)->orderBy('id', 'ASC')->pluck('title', 'id');
     }
 
     public function child_cat()
     {
-        return $this->hasMany('App\Models\Category', 'parent_id', 'id')->where('status', 'active');
+        return $this->hasMany('App\Models\Category', 'id', 'id');
     }
     public static function getAllParentWithChild()
     {

@@ -17,19 +17,19 @@
             <div class="carousel-caption d-none d-md-block text-left">
                 <h1 class="wow fadeInDown">{{$banner->title}}</h1>
                 <p>{!! html_entity_decode($banner->description) !!}</p>
-                <a class="btn btn-lg ws-btn wow fadeInUpBig" href="{{route('product-grids')}}" role="button">Shop Now<i
-                        class="far fa-arrow-alt-circle-right"></i></i></a>
+                <a class="btn btn-lg ws-btn wow fadeInUpBig" href="{{route('product-grids')}}" role="button">Belanja
+                    Sekarang<i class="far fa-arrow-alt-circle-right"></i></i></a>
             </div>
         </div>
         @endforeach
     </div>
     <a class="carousel-control-prev" href="#Gslider" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
+        <span class="sr-only">Sebelumnya</span>
     </a>
     <a class="carousel-control-next" href="#Gslider" role="button" data-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
+        <span class="sr-only">Selanjutnya</span>
     </a>
 </section>
 @endif
@@ -62,7 +62,6 @@
                                 All Products
                             </button>
                             @foreach($categories as $key=>$cat)
-
                             <button class="btn" style="background:none;color:#354458;" data-filter=".{{$cat->id}}">
                                 {{$cat->title}}
                             </button>
@@ -71,6 +70,7 @@
                         </ul>
                         <!--/ End Tab Nav -->
                     </div>
+
                     <div class="tab-content isotope-grid" id="myTabContent">
                         <!-- Start Single Tab -->
                         @if($product_lists)
@@ -98,13 +98,13 @@
                                     <div class="button-head">
                                         <div class="product-action">
                                             <a data-toggle="modal" data-target="#{{$product->id}}" title="Quick View"
-                                                href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
+                                                href="#"><i class=" ti-eye"></i><span>Pemesanan Cepat</span></a>
                                             <a title="Wishlist" href="{{route('add-to-wishlist',$product->slug)}}"><i
-                                                    class=" ti-heart "></i><span>Add to Wishlist</span></a>
+                                                    class=" ti-heart "></i><span>Tambah ke Wishlist</span></a>
                                         </div>
                                         <div class="product-action-2">
-                                            <a title="Add to cart" href="{{route('add-to-cart',$product->slug)}}">Add to
-                                                cart</a>
+                                            <a title="Add to cart" href="{{route('add-to-cart',$product->slug)}}">Tambah
+                                                ke Keranjang</a>
                                         </div>
                                     </div>
                                 </div>
@@ -144,7 +144,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="shop-section-title">
-                            <h1>Latest Items</h1>
+                            <h1>Barang Terbaru</h1>
                         </div>
                     </div>
                 </div>
