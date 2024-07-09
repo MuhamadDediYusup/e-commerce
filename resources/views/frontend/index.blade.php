@@ -81,8 +81,10 @@
                                         @php
                                         $photo=explode(',',$product->photo);
                                         @endphp
-                                        <img class="default-img" src="{{$photo[0]}}" alt="{{$photo[0]}}">
-                                        <img class="hover-img" src="{{$photo[0]}}" alt="{{$photo[0]}}">
+                                        <img class="default-img" src="{{$photo[0]}}" alt="{{$photo[0]}}" width="100%"
+                                            height="300px">
+                                        <img class="hover-img" src="{{$photo[0]}}" alt="{{$photo[0]}}" width="100%"
+                                            height="300px">
                                         @if($product->stock<=0) <span class="out-of-stock">Sale out</span>
                                             @else
                                             <span class="price-dec">{{$product->discount}}% Off</span>
@@ -150,7 +152,8 @@
                                         @php
                                         $photo=explode(',',$product->photo);
                                         @endphp
-                                        <img src="{{asset($photo[0])}}" alt="{{asset($photo[0])}}">
+                                        <img src="{{asset($photo[0])}}" width="100%" height="300px"
+                                            alt="{{asset($photo[0])}}">
                                         <a href="{{route('add-to-cart',$product->slug)}}" class="buy"><i
                                                 class="fa fa-shopping-bag"></i></a>
                                     </div>
