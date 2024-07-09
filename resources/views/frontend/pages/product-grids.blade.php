@@ -10,7 +10,7 @@
             <div class="col-12">
                 <div class="bread-inner">
                     <ul class="bread-list">
-                        <li><a href="index1.html">Home<i class="ti-arrow-right"></i></a></li>
+                        <li><a href="index1.html">Beranda<i class="ti-arrow-right"></i></a></li>
                         <li class="active"><a href="blog-single.html">Shop Grid</a></li>
                     </ul>
                 </div>
@@ -30,7 +30,7 @@
                     <div class="shop-sidebar">
                         <!-- Single Widget -->
                         <div class="single-widget category">
-                            <h3 class="title">Categories</h3>
+                            <h3 class="title">Kategori</h3>
                             <ul class="categor-list">
                                 @php
                                 // $category = new Category();
@@ -41,13 +41,6 @@
                                     @foreach($menu as $cat_info)
                                     @if($cat_info->child_cat->count()>0)
                                 <li><a href="{{route('product-cat',$cat_info->slug)}}">{{$cat_info->title}}</a>
-                                    <ul>
-                                        @foreach($cat_info->child_cat as $sub_menu)
-                                        <li><a
-                                                href="{{route('product-sub-cat',[$cat_info->slug,$sub_menu->slug])}}">{{$sub_menu->title}}</a>
-                                        </li>
-                                        @endforeach
-                                    </ul>
                                 </li>
                                 @else
                                 <li><a href="{{route('product-cat',$cat_info->slug)}}">{{$cat_info->title}}</a></li>
@@ -65,7 +58,7 @@
                         <!--/ End Single Widget -->
                         <!-- Shop By Price -->
                         <div class="single-widget range">
-                            <h3 class="title">Shop by Price</h3>
+                            <h3 class="title">Belanja berdasarkan Harga</h3>
                             <div class="price-filter">
                                 <div class="price-filter-inner">
                                     @php
@@ -89,7 +82,7 @@
                         <!--/ End Shop By Price -->
                         <!-- Single Widget -->
                         <div class="single-widget recent-post">
-                            <h3 class="title">Recent post</h3>
+                            <h3 class="title">Postingan terbaru</h3>
                             {{-- {{dd($recent_products)}} --}}
                             @foreach($recent_products as $product)
                             <!-- Single Post -->
@@ -106,8 +99,9 @@
                                     @php
                                     $org=($product->price-($product->price*$product->discount)/100);
                                     @endphp
-                                    <p class="price"><del class="text-muted">${{number_format($product->price,2)}}</del>
-                                        ${{number_format($org,2)}} </p>
+                                    <p class="price"><del
+                                            class="text-muted">Rp{{number_format($product->price,2)}}</del>
+                                        Rp{{number_format($org,2)}} </p>
 
                                 </div>
                             </div>
@@ -205,7 +199,7 @@
                         </div>
                         @endforeach
                         @else
-                        <h4 class="text-warning" style="margin:100px auto;">There are no products.</h4>
+                        <h4 class="text-warning" style="margin:100px auto;">Tidak ada produk.</h4>
                         @endif
 
 
@@ -276,14 +270,13 @@
                                             @endif
                                             @endfor
                                     </div>
-                                    <a href="#"> ({{$rate_count}} customer review)</a>
+                                    <a href="#"> ({{$rate_count}} ulasan pelanggan)</a>
                                 </div>
                                 <div class="quickview-stock">
                                     @if($product->stock >0)
-                                    <span><i class="fa fa-check-circle-o"></i> {{$product->stock}} in stock</span>
+                                    <span><i class="fa fa-check-circle-o"></i> {{$product->stock}} persediaan</span>
                                     @else
-                                    <span><i class="fa fa-times-circle-o text-danger"></i> {{$product->stock}} out
-                                        stock</span>
+                                    <span><i class="fa fa-times-circle-o text-danger"></i> {{$product->stock}}</span>
                                     @endif
                                 </div>
                             </div>
@@ -323,15 +316,6 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    {{-- <div class="col-lg-6 col-12">
-                                        <h5 class="title">Color</h5>
-                                        <select>
-                                            <option selected="selected">orange</option>
-                                            <option>purple</option>
-                                            <option>black</option>
-                                            <option>pink</option>
-                                        </select>
-                                    </div> --}}
                                 </div>
                             </div>
                             <form action="{{route('single-add-to-cart')}}" method="POST">
@@ -358,7 +342,7 @@
                                     <!--/ End Input Order -->
                                 </div>
                                 <div class="add-to-cart">
-                                    <button type="submit" class="btn">Add to cart</button>
+                                    <button type="submit" class="btn">Masukkan ke keranjang</button>
                                     <a href="{{route('add-to-wishlist',$product->slug)}}" class="btn min"><i
                                             class="ti-heart"></i></a>
                                 </div>
@@ -398,37 +382,6 @@
 @endpush
 @push('scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
-{{-- <script>
-    $('.cart').click(function(){
-            var quantity=1;
-            var pro_id=$(this).data('id');
-            $.ajax({
-                url:"{{route('add-to-cart')}}",
-                type:"POST",
-                data:{
-                    _token:"{{csrf_token()}}",
-                    quantity:quantity,
-                    pro_id:pro_id
-                },
-                success:function(response){
-                    console.log(response);
-					if(typeof(response)!='object'){
-						response=$.parseJSON(response);
-					}
-					if(response.status){
-						swal('success',response.msg,'success').then(function(){
-							document.location.href=document.location.href;
-						});
-					}
-                    else{
-                        swal('error',response.msg,'error').then(function(){
-							// document.location.href=document.location.href;
-						});
-                    }
-                }
-            })
-        });
-</script> --}}
 <script>
     $(document).ready(function(){
         /*----------------------------------------------------*/

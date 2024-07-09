@@ -24,7 +24,7 @@
             <div class="col-12">
                 <div class="bread-inner">
                     <ul class="bread-list">
-                        <li><a href="{{route('home')}}">Home<i class="ti-arrow-right"></i></a></li>
+                        <li><a href="{{route('home')}}">Beranda<i class="ti-arrow-right"></i></a></li>
                         <li class="active"><a href="">Shop Details</a></li>
                     </ul>
                 </div>
@@ -89,19 +89,6 @@
                                 </p>
                                 <p class="description">{!!($product_detail->summary)!!}</p>
                             </div>
-                            <!--/ End Description -->
-                            <!-- Color -->
-                            {{-- <div class="color">
-                                <h4>Available Options <span>Color</span></h4>
-                                <ul>
-                                    <li><a href="#" class="one"><i class="ti-check"></i></a></li>
-                                    <li><a href="#" class="two"><i class="ti-check"></i></a></li>
-                                    <li><a href="#" class="three"><i class="ti-check"></i></a></li>
-                                    <li><a href="#" class="four"><i class="ti-check"></i></a></li>
-                                </ul>
-                            </div> --}}
-                            <!--/ End Color -->
-                            <!-- Size -->
                             @if($product_detail->size)
                             <div class="size mt-4">
                                 <h4>Size</h4>
@@ -122,7 +109,7 @@
                                 <form action="{{route('single-add-to-cart')}}" method="POST">
                                     @csrf
                                     <div class="quantity">
-                                        <h6>Quantity :</h6>
+                                        <h6>Jumlah :</h6>
                                         <!-- Input Order -->
                                         <div class="input-group">
                                             <div class="button minus">
@@ -144,7 +131,7 @@
                                         <!--/ End Input Order -->
                                     </div>
                                     <div class="add-to-cart mt-4">
-                                        <button type="submit" class="btn">Add to cart</button>
+                                        <button type="submit" class="btn">Tambah ke Keranjang</button>
                                         <a href="{{route('add-to-wishlist',$product_detail->slug)}}" class="btn min"><i
                                                 class="ti-heart"></i></a>
                                     </div>
@@ -153,11 +140,6 @@
                                 <p class="cat">Category :<a
                                         href="{{route('product-cat',$product_detail->slug)}}">{{$product_detail->title}}</a>
                                 </p>
-                                @if($product_detail->sub_cat_info)
-                                <p class="cat mt-1">Sub Category :<a
-                                        href="{{route('product-sub-cat',[$product_detail->slug,$product_detail->sub_slug])}}">{{$product_detail->sub_cat_info['title']}}</a>
-                                </p>
-                                @endif
                                 <p class="availability">Stock : @if($product_detail->stock>0)<span
                                         class="badge badge-success">{{$product_detail->stock}}</span>@else <span
                                         class="badge badge-danger">{{$product_detail->stock}}</span> @endif</p>
@@ -173,9 +155,9 @@
                                 <!-- Tab Nav -->
                                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                                     <li class="nav-item"><a class="nav-link active" data-toggle="tab"
-                                            href="#description" role="tab">Description</a></li>
+                                            href="#description" role="tab">Deskripsi</a></li>
                                     <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#reviews"
-                                            role="tab">Reviews</a></li>
+                                            role="tab">Ulasan</a></li>
                                 </ul>
                                 <!--/ End Tab Nav -->
                             </div>
@@ -202,11 +184,11 @@
                                                 <!-- Review -->
                                                 <div class="comment-review">
                                                     <div class="add-review">
-                                                        <h5>Add A Review</h5>
-                                                        <p>Your email address will not be published. Required fields are
-                                                            marked</p>
+                                                        <h5>Tambahkan Ulasan</h5>
+                                                        <p>Alamat email Anda tidak akan dipublikasikan. Kolom yang wajib
+                                                            diisi ditandai dengan *</p>
                                                     </div>
-                                                    <h4>Your Rating <span class="text-danger">*</span></h4>
+                                                    <h4>Rating Anda <span class="text-danger">*</span></h4>
                                                     <div class="review-inner">
                                                         <!-- Form -->
                                                         @auth
@@ -224,35 +206,35 @@
                                                                                 <label
                                                                                     class="star-rating__ico fa fa-star-o"
                                                                                     for="star-rating-5"
-                                                                                    title="5 out of 5 stars"></label>
+                                                                                    title="5 dari 5 bintang"></label>
                                                                                 <input class="star-rating__input"
                                                                                     id="star-rating-4" type="radio"
                                                                                     name="rate" value="4">
                                                                                 <label
                                                                                     class="star-rating__ico fa fa-star-o"
                                                                                     for="star-rating-4"
-                                                                                    title="4 out of 5 stars"></label>
+                                                                                    title="4 dari 5 bintang"></label>
                                                                                 <input class="star-rating__input"
                                                                                     id="star-rating-3" type="radio"
                                                                                     name="rate" value="3">
                                                                                 <label
                                                                                     class="star-rating__ico fa fa-star-o"
                                                                                     for="star-rating-3"
-                                                                                    title="3 out of 5 stars"></label>
+                                                                                    title="3 dari 5 bintang"></label>
                                                                                 <input class="star-rating__input"
                                                                                     id="star-rating-2" type="radio"
                                                                                     name="rate" value="2">
                                                                                 <label
                                                                                     class="star-rating__ico fa fa-star-o"
                                                                                     for="star-rating-2"
-                                                                                    title="2 out of 5 stars"></label>
+                                                                                    title="2 dari 5 bintang"></label>
                                                                                 <input class="star-rating__input"
                                                                                     id="star-rating-1" type="radio"
                                                                                     name="rate" value="1">
                                                                                 <label
                                                                                     class="star-rating__ico fa fa-star-o"
                                                                                     for="star-rating-1"
-                                                                                    title="1 out of 5 stars"></label>
+                                                                                    title="1 dari 5 bintang"></label>
                                                                                 @error('rate')
                                                                                 <span
                                                                                     class="text-danger">{{$message}}</span>
@@ -263,15 +245,14 @@
                                                                 </div>
                                                                 <div class="col-lg-12 col-12">
                                                                     <div class="form-group">
-                                                                        <label>Write a review</label>
+                                                                        <label>Tulis ulasan</label>
                                                                         <textarea name="review" rows="6"
                                                                             placeholder=""></textarea>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-lg-12 col-12">
                                                                     <div class="form-group button5">
-                                                                        <button type="submit"
-                                                                            class="btn">Submit</button>
+                                                                        <button type="submit" class="btn">Kirim</button>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -353,72 +334,6 @@
     </div>
 </section>
 <!--/ End Shop Single -->
-
-<!-- Start Most Popular -->
-<div class="product-area most-popular related-product section">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="section-title">
-                    <h2>Related Products</h2>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            {{-- {{$product_detail->rel_prods}} --}}
-            <div class="col-12">
-                <div class="owl-carousel popular-slider">
-                    @foreach($product_detail->rel_prods as $data)
-                    @if($data->id !==$product_detail->id)
-                    <!-- Start Single Product -->
-                    <div class="single-product">
-                        <div class="product-img">
-                            <a href="{{route('product-detail',$data->slug)}}">
-                                @php
-                                $photo=explode(',',$data->photo);
-                                @endphp
-                                <img class="default-img" src="{{$photo[0]}}" alt="{{$photo[0]}}">
-                                <img class="hover-img" src="{{$photo[0]}}" alt="{{$photo[0]}}">
-                                <span class="price-dec">{{$data->discount}} % Off</span>
-                                {{-- <span class="out-of-stock">Hot</span> --}}
-                            </a>
-                            <div class="button-head">
-                                <div class="product-action">
-                                    <a data-toggle="modal" data-target="#modelExample" title="Quick View" href="#"><i
-                                            class=" ti-eye"></i><span>Quick Shop</span></a>
-                                    <a title="Wishlist" href="#"><i class=" ti-heart "></i><span>Add to
-                                            Wishlist</span></a>
-                                    <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to
-                                            Compare</span></a>
-                                </div>
-                                <div class="product-action-2">
-                                    <a title="Add to cart" href="#">Add to cart</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-content">
-                            <h3><a href="{{route('product-detail',$data->slug)}}">{{$data->title}}</a></h3>
-                            <div class="product-price">
-                                @php
-                                $after_discount=($data->price-(($data->discount*$data->price)/100));
-                                @endphp
-                                <span class="old">${{number_format($data->price,2)}}</span>
-                                <span>${{number_format($after_discount,2)}}</span>
-                            </div>
-
-                        </div>
-                    </div>
-                    <!-- End Single Product -->
-
-                    @endif
-                    @endforeach
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- End Most Popular Area -->
-
 
 <!-- Modal -->
 <div class="modal fade" id="modelExample" tabindex="-1" role="dialog">

@@ -11,7 +11,7 @@
             <div class="col-12">
                 <div class="bread-inner">
                     <ul class="bread-list">
-                        <li><a href="{{route('home')}}">Home<i class="ti-arrow-right"></i></a></li>
+                        <li><a href="{{route('home')}}">Beranda<i class="ti-arrow-right"></i></a></li>
                         <li class="active"><a href="javascript:void(0);">Shop List</a></li>
                     </ul>
                 </div>
@@ -30,7 +30,7 @@
                     <div class="shop-sidebar">
                         <!-- Single Widget -->
                         <div class="single-widget category">
-                            <h3 class="title">Categories</h3>
+                            <h3 class="title">Kategori</h3>
                             <ul class="categor-list">
                                 @php
                                 // $category = new Category();
@@ -110,7 +110,7 @@
                         <!--/ End Shop By Price -->
                         <!-- Single Widget -->
                         <div class="single-widget recent-post">
-                            <h3 class="title">Recent post</h3>
+                            <h3 class="title">Postingan Terbaru</h3>
                             {{-- {{dd($recent_products)}} --}}
                             @foreach($recent_products as $product)
                             <!-- Single Post -->
@@ -306,14 +306,13 @@
                                             @endif
                                             @endfor
                                     </div>
-                                    <a href="#"> ({{$rate_count}} customer review)</a>
+                                    <a href="#"> ({{$rate_count}} Ulasan Pelangan)</a>
                                 </div>
                                 <div class="quickview-stock">
                                     @if($product->stock >0)
-                                    <span><i class="fa fa-check-circle-o"></i> {{$product->stock}} in stock</span>
+                                    <span><i class="fa fa-check-circle-o"></i> {{$product->stock}} persediaan</span>
                                     @else
-                                    <span><i class="fa fa-times-circle-o text-danger"></i> {{$product->stock}} out
-                                        stock</span>
+                                    <span><i class="fa fa-times-circle-o text-danger"></i> {{$product->stock}} </span>
                                     @endif
                                 </div>
                             </div>
@@ -363,7 +362,7 @@
                                     <!--/ End Input Order -->
                                 </div>
                                 <div class="add-to-cart">
-                                    <button type="submit" class="btn">Add to cart</button>
+                                    <button type="submit" class="btn">Tambah ke Keranjang</button>
                                     <a href="{{route('add-to-wishlist',$product->slug)}}" class="btn min"><i
                                             class="ti-heart"></i></a>
                                 </div>
@@ -403,37 +402,6 @@
 @push('scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 
-{{-- <script>
-    $('.cart').click(function(){
-            var quantity=1;
-            var pro_id=$(this).data('id');
-            $.ajax({
-                url:"{{route('add-to-cart')}}",
-                type:"POST",
-                data:{
-                    _token:"{{csrf_token()}}",
-                    quantity:quantity,
-                    pro_id:pro_id
-                },
-                success:function(response){
-                    console.log(response);
-					if(typeof(response)!='object'){
-						response=$.parseJSON(response);
-					}
-					if(response.status){
-						swal('success',response.msg,'success').then(function(){
-							document.location.href=document.location.href;
-						});
-					}
-					else{
-                        swal('error',response.msg,'error').then(function(){
-							// document.location.href=document.location.href;
-						});
-                    }
-                }
-            })
-        });
-</script> --}}
 <script>
     $(document).ready(function(){
         /*----------------------------------------------------*/
