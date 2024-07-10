@@ -11,8 +11,8 @@
             <div class="col-12">
                 <div class="bread-inner">
                     <ul class="bread-list">
-                        <li><a href="index1.html">Home<i class="ti-arrow-right"></i></a></li>
-                        <li class="active"><a href="blog-single.html">About Us</a></li>
+                        <li><a href="index1.html">Beranda<i class="ti-arrow-right"></i></a></li>
+                        <li class="active"><a href="blog-single.html">Tentang Kami</a></li>
                     </ul>
                 </div>
             </div>
@@ -20,6 +20,9 @@
     </div>
 </div>
 <!-- End Breadcrumbs -->
+
+<!-- udpate -->
+
 
 <!-- About Us -->
 <section class="about-us section">
@@ -30,10 +33,10 @@
                     @php
                     $settings=DB::table('settings')->get();
                     @endphp
-                    <h3>Welcome To <span>Berkah Tani</span></h3>
+                    <h3>Selamat Datang di <span>Berkah Tani</span></h3>
                     <p>@foreach($settings as $data) {{$data->description}} @endforeach</p>
                     <div class="button">
-                        <a href="{{route('contact')}}" class="btn primary">Contact Us</a>
+                        <a href="{{route('contact')}}" class="btn primary">Hubungi Kami</a>
                     </div>
                 </div>
             </div>

@@ -21,36 +21,35 @@
 					</div>
 					<div class="col-lg-2 col-md-6 col-12">
 						<!-- Single Widget -->
-						<div class="single-footer links">
-							<h4>Information</h4>
-							<ul>
-								<li><a href="{{route('about-us')}}">About Us</a></li>
-								<li><a href="#">Faq</a></li>
-								<li><a href="#">Terms & Conditions</a></li>
-								<li><a href="{{route('contact')}}">Contact Us</a></li>
-								<li><a href="#">Help</a></li>
-							</ul>
-						</div>
-						<!-- End Single Widget -->
+                        <div class="single-footer links">
+                            <h4>Informasi</h4>
+                            <ul>
+                                <li><a href="{{route('about-us')}}">Tentang Kami</a></li>
+                                <li><a href="#">Faq</a></li>
+                                <li><a href="#">Syarat & Ketentuan</a></li>
+                                <li><a href="{{route('contact')}}">Hubungi Kami</a></li>
+                                <li><a href="#">Bantuan</a></li>
+                            </ul>
+                        </div>		<!-- End Single Widget -->
 					</div>
-					<div class="col-lg-2 col-md-6 col-12">
-						<!-- Single Widget -->
-						<div class="single-footer links">
-							<h4>Customer Service</h4>
-							<ul>
-								<li><a href="#">Payment Methods</a></li>
-								<li><a href="#">Money-back</a></li>
-								<li><a href="#">Returns</a></li>
-								<li><a href="#">Shipping</a></li>
-								<li><a href="#">Privacy Policy</a></li>
-							</ul>
-						</div>
-						<!-- End Single Widget -->
-					</div>
-					<div class="col-lg-3 col-md-6 col-12">
+                    <div class="col-lg-2 col-md-6 col-12">
+                        <!-- Single Widget -->
+                        <div class="single-footer links">
+                            <h4>Layanan Pelanggan</h4>
+                            <ul>
+                                <li><a href="#">Metode Pembayaran</a></li>
+                                <li><a href="#">Pengembalian Uang</a></li>
+                                <li><a href="#">Pengembalian Barang</a></li>
+                                <li><a href="#">Pengiriman</a></li>
+                                <li><a href="#">Kebijakan Privasi</a></li>
+                            </ul>
+                        </div>
+                        <!-- End Single Widget -->
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-12">
 						<!-- Single Widget -->
 						<div class="single-footer social">
-							<h4>Get In Tuch</h4>
+							<h4>Hubungi Kami</h4>
 							<!-- Single Widget -->
 							<div class="contact">
 								<ul>
@@ -77,11 +76,11 @@
 								<p>Copyright © {{date('Y')}} All Rights Reserved.</p>
 							</div>
 						</div>
-						<div class="col-lg-6 col-12">
+						{{-- <div class="col-lg-6 col-12">
 							<div class="right">
 								<img src="{{asset('backend/img/payments.png')}}" alt="#">
 							</div>
-						</div>
+						</div> --}}
 					</div>
 				</div>
 			</div>
