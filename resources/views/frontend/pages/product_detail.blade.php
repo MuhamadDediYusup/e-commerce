@@ -14,7 +14,7 @@
 <meta property="og:image" content="{{$product_detail->photo}}">
 <meta property="og:description" content="{{$product_detail->description}}">
 @endsection
-@section('title','E-SHOP || PRODUCT DETAIL')
+@section('title','Berkah Tani | Detail Produk')
 @section('main-content')
 
 <!-- Breadcrumbs -->
@@ -25,7 +25,7 @@
                 <div class="bread-inner">
                     <ul class="bread-list">
                         <li><a href="{{route('home')}}">Beranda<i class="ti-arrow-right"></i></a></li>
-                        <li class="active"><a href="">Shop Details</a></li>
+                        <li class="active"><a href="">Detail Produk</a></li>
                     </ul>
                 </div>
             </div>
@@ -84,12 +84,10 @@
                                 @php
                                 $after_discount=($product_detail->price-(($product_detail->price*$product_detail->discount)/100));
                                 @endphp
-                                <p class="price"><span
-                                        class="discount">${{number_format($after_discount,2)}}</span><s>${{number_format($product_detail->price,2)}}</s>
-                                </p>
+                                    <p class="price"><span class="discount">Rp.{{number_format($after_discount,2)}}</span><s>Rp.{{number_format($product_detail->price,2)}} </s></p>
                                 <p class="description">{!!($product_detail->summary)!!}</p>
                             </div>
-                            @if($product_detail->size)
+                            {{-- @if($product_detail->size)
                             <div class="size mt-4">
                                 <h4>Size</h4>
                                 <ul>
@@ -102,7 +100,7 @@
                                     @endforeach
                                 </ul>
                             </div>
-                            @endif
+                            @endif --}}
                             <!--/ End Size -->
                             <!-- Product Buy -->
                             <div class="product-buy">
@@ -132,15 +130,13 @@
                                     </div>
                                     <div class="add-to-cart mt-4">
                                         <button type="submit" class="btn">Tambah ke Keranjang</button>
-                                        <a href="{{route('add-to-wishlist',$product_detail->slug)}}" class="btn min"><i
-                                                class="ti-heart"></i></a>
                                     </div>
                                 </form>
 
-                                <p class="cat">Category :<a
+                                <p class="cat">Kategori :<a
                                         href="{{route('product-cat',$product_detail->slug)}}">{{$product_detail->title}}</a>
                                 </p>
-                                <p class="availability">Stock : @if($product_detail->stock>0)<span
+                                <p class="availability">Stok : @if($product_detail->stock>0)<span
                                         class="badge badge-success">{{$product_detail->stock}}</span>@else <span
                                         class="badge badge-danger">{{$product_detail->stock}}</span> @endif</p>
                             </div>

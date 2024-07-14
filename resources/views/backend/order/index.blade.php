@@ -17,28 +17,28 @@
                     <table class="table table-bordered" id="order-dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th>S.N.</th>
-                                <th>Order No.</th>
-                                <th>Name</th>
+                                <th>No</th>
+                                <th>Nomor Pesanan</th>
+                                <th>Nama</th>
                                 <th>Email</th>
-                                <th>Quantity</th>
-                                <th>Charge</th>
-                                <th>Total Amount</th>
+                                <th>Jumlah</th>
+                                <th>Biaya</th>
+                                <th>Total Harga</th>
                                 <th>Status</th>
-                                <th>Action</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
-                                <th>S.N.</th>
-                                <th>Order No.</th>
-                                <th>Name</th>
+                                <th>No</th>
+                                <th>Nomor Pesanan</th>
+                                <th>Nama</th>
                                 <th>Email</th>
-                                <th>Quantity</th>
-                                <th>Charge</th>
-                                <th>Total Amount</th>
+                                <th>Jumlah</th>
+                                <th>Biaya</th>
+                                <th>Total Harga</th>
                                 <th>Status</th>
-                                <th>Action</th>
+                                <th>Aksi</th>
                             </tr>
                         </tfoot>
                         <tbody>
@@ -56,19 +56,19 @@
                                     <td>{{ $order->quantity }}</td>
                                     <td>
                                         @foreach ($shipping_charge as $data)
-                                            $ {{ number_format($data, 2) }}
+                                            Rp. {{ number_format($data, 2) }}
                                         @endforeach
                                     </td>
-                                    <td>${{ number_format($order->total_amount, 2) }}</td>
+                                    <td>Rp. {{ number_format($order->total_amount, 2) }}</td>
                                     <td>
                                         @if ($order->status == 'new')
-                                            <span class="badge badge-primary">{{ $order->status }}</span>
+                                            <span class="badge badge-primary">Pesanan Baru</span>
                                         @elseif($order->status == 'process')
-                                            <span class="badge badge-warning">{{ $order->status }}</span>
+                                            <span class="badge badge-warning">Proses</span>
                                         @elseif($order->status == 'delivered')
-                                            <span class="badge badge-success">{{ $order->status }}</span>
+                                            <span class="badge badge-success">Telah Dikirim</span>
                                         @else
-                                            <span class="badge badge-danger">{{ $order->status }}</span>
+                                            <span class="badge badge-danger">Batal</span>
                                         @endif
                                     </td>
                                     <td>

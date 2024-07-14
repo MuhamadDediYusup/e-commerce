@@ -91,12 +91,6 @@
                                             @endif
                                     </a>
                                     <div class="button-head">
-                                        <div class="product-action">
-                                            <a data-toggle="modal" data-target="#{{$product->id}}" title="Quick View"
-                                                href="#"><i class="ti-eye"></i><span>Pemesanan Cepat</span></a>
-                                            <a title="Wishlist" href="{{route('add-to-wishlist',$product->slug)}}"><i
-                                                    class="ti-heart"></i><span>Tambah ke Wishlist</span></a>
-                                        </div>
                                         <div class="product-action-2">
                                             <a title="Add to cart" href="{{route('add-to-cart',$product->slug)}}">Tambah
                                                 ke Keranjang</a>
@@ -167,7 +161,7 @@
                                         $after_discount=($product->price-($product->price*$product->discount)/100);
                                         @endphp
                                         <span>Rp{{number_format($after_discount,2)}}</span>
-                                        <del style="padding-left:4%;">${{number_format($product->price,2)}}</del>
+                                        <del style="padding-left:4%;">Rp{{number_format($product->price,2)}}</del>
                                         <p class="price with-discount">{{number_format($product->discount)}}% OFF</p>
                                     </div>
                                 </div>
@@ -314,8 +308,6 @@
                                 </div>
                                 <div class="add-to-cart">
                                     <button type="submit" class="btn">Masukkan ke keranjang</button>
-                                    <a href="{{route('add-to-wishlist',$product->slug)}}" class="btn min"><i
-                                            class="ti-heart"></i></a>
                                 </div>
                             </form>
                         </div>
