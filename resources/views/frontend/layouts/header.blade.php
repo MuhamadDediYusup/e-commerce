@@ -100,7 +100,7 @@
                             @auth
                             <div class="shopping-item">
                                 <div class="bottom">
-                                    <a href="{{route('cart')}}" class="btn animate">Cart</a>
+                                    <a href="{{route('cart')}}" class="btn animate">Keranjang</a>
                                 </div>
                             </div>
                             @endauth
@@ -165,7 +165,7 @@
                                             <li class="{{Request::path()=='home' ? 'active' : ''}}"><a
                                                     href="{{route('home')}}">Beranda</a></li>
                                             <li class="{{Request::path()=='about-us' ? 'active' : ''}}"><a
-                                                    href="{{route('about-us')}}">Tantang</a></li>
+                                                    href="{{route('about-us')}}">Tentang</a></li>
                                             <li
                                                 class="@if(Request::path()=='product-grids'||Request::path()=='product-lists')  active  @endif">
                                                 <a href="{{route('product-grids')}}">Produk</a><span

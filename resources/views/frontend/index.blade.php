@@ -105,7 +105,7 @@
                                         $after_discount=($product->price-($product->price*$product->discount)/100);
                                         @endphp
                                         <span>Rp{{number_format($after_discount,2)}}</span>
-                                        <del style="padding-left:4%;">${{number_format($product->price,2)}}</del>
+                                        <del style="padding-left:4%;">Rp{{number_format($product->price,2)}}</del>
                                     </div>
                                 </div>
                             </div>
