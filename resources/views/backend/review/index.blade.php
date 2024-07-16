@@ -9,7 +9,7 @@
             </div>
         </div>
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary float-left">Daftar Penilaian</h6>
+            <h6 class="m-0 font-weight-bold text-success float-left">Daftar Penilaian</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -67,7 +67,7 @@
                                     </td>
                                     <td>
                                         <a href="{{ route('review.edit', $review->id) }}"
-                                            class="btn btn-primary btn-sm float-left mr-1"
+                                            class="btn btn-success btn-sm float-left mr-1"
                                             style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip"
                                             title="edit" data-placement="bottom"><i class="fas fa-edit"></i></a>
                                         <form method="POST" action="{{ route('review.destroy', [$review->id]) }}">
