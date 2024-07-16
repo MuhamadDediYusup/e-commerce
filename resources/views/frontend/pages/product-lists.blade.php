@@ -12,7 +12,7 @@
                 <div class="bread-inner">
                     <ul class="bread-list">
                         <li><a href="{{route('home')}}">Beranda<i class="ti-arrow-right"></i></a></li>
-                        <li class="active"><a href="javascript:void(0);">Shop List</a></li>
+                        <li class="active"><a href="javascript:void(0);">Daftar Produk</a></li>
                     </ul>
                 </div>
             </div>
@@ -65,7 +65,7 @@
                         <!--/ End Single Widget -->
                         <!-- Shop By Price -->
                         <div class="single-widget range">
-                            <h3 class="title">Shop by Price</h3>
+                            <h3 class="title">Filter Berdasarkan Harga</h3>
                             <div class="price-filter">
                                 <div class="price-filter-inner">
                                     {{-- <div id="slider-range" data-min="10" data-max="2000" data-currency="%"></div>
@@ -84,7 +84,7 @@
                                     <div class="product_filter">
                                         <button type="submit" class="filter_button">Filter</button>
                                         <div class="label-input">
-                                            <span>Range:</span>
+                                            <span>Rentang:</span>
                                             <input style="" type="text" id="amount" readonly />
                                             <input type="hidden" name="price_range" id="price_range"
                                                 value="@if(!empty($_GET['price'])){{$_GET['price']}}@endif" />
@@ -127,8 +127,8 @@
                                     @php
                                     $org=($product->price-($product->price*$product->discount)/100);
                                     @endphp
-                                    <p class="price"><del class="text-muted">${{number_format($product->price,2)}}</del>
-                                        ${{number_format($org,2)}} </p>
+                                    <p class="price"><del class="text-muted">Rp. {{number_format($product->price,2)}}</del>
+                                        Rp. {{number_format($org,2)}} </p>
                                 </div>
                             </div>
                             <!-- End Single Post -->
@@ -162,13 +162,11 @@
                                         <select class='sortBy' name='sortBy' onchange="this.form.submit();">
                                             <option value="">Default</option>
                                             <option value="title" @if(!empty($_GET['sortBy']) &&
-                                                $_GET['sortBy']=='title' ) selected @endif>Name</option>
+                                                $_GET['sortBy']=='title' ) selected @endif>Nama</option>
                                             <option value="price" @if(!empty($_GET['sortBy']) &&
-                                                $_GET['sortBy']=='price' ) selected @endif>Price</option>
+                                                $_GET['sortBy']=='price' ) selected @endif>Harga</option>
                                             <option value="category" @if(!empty($_GET['sortBy']) &&
-                                                $_GET['sortBy']=='category' ) selected @endif>Category</option>
-                                            <option value="brand" @if(!empty($_GET['sortBy']) &&
-                                                $_GET['sortBy']=='brand' ) selected @endif>Brand</option>
+                                                $_GET['sortBy']=='category' ) selected @endif>Kategori</option>
                                         </select>
                                     </div>
                                 </div>
@@ -201,12 +199,15 @@
                                             <div class="button-head">
                                                 <div class="product-action">
                                                     <a data-toggle="modal" data-target="#{{$product->id}}"
-                                                        title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick
-                                                            Shop</span></a>
+                                                        title="Quick View" href="#"><i class=" ti-eye"></i>
+                                                        <span>
+                                                            Beli Sekarang
+                                                        </span>
+                                                    </a>
                                                 </div>
                                                 <div class="product-action-2">
                                                     <a title="Add to cart"
-                                                        href="{{route('add-to-cart',$product->slug)}}">Add to cart</a>
+                                                        href="{{route('add-to-cart',$product->slug)}}">Tambah ke Keranjang</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -219,8 +220,8 @@
                                                 @php
                                                 $after_discount=($product->price-($product->price*$product->discount)/100);
                                                 @endphp
-                                                <span>${{number_format($after_discount,2)}}</span>
-                                                <del>${{number_format($product->price,2)}}</del>
+                                                <span>Rp. {{number_format($after_discount,2)}}</span>
+                                                <del>Rp. {{number_format($product->price,2)}}</del>
                                             </div>
                                             <h3 class="title"><a
                                                     href="{{route('product-detail',$product->slug)}}">{{$product->title}}</a>
@@ -237,7 +238,7 @@
                         <!-- End Single List -->
                         @endforeach
                         @else
-                        <h4 class="text-warning" style="margin:100px auto;">There are no products.</h4>
+                        <h4 class="text-warning" style="margin:100px auto;">Produk Tidak Ditemukan</h4>
                         @endif
                     </div>
                     <div class="row">
@@ -326,7 +327,6 @@
                                 <ul>
                                     @php
                                     $sizes=explode(',',$product->size);
-                                    // dd($sizes);
                                     @endphp
                                     @foreach($sizes as $size)
                                     <li><a href="#" class="one">{{$size}}</a></li>

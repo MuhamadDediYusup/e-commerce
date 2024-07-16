@@ -56,7 +56,7 @@ class CartController extends Controller
             if ($cart->product->stock < $cart->quantity || $cart->product->stock <= 0) return back()->with('error', 'Stock not sufficient!.');
             $cart->save();
         }
-        request()->session()->flash('success', 'Product successfully added to cart');
+        request()->session()->flash('success', 'Produk berhasil ditambahkan ke keranjang');
         return back();
     }
 
@@ -102,7 +102,7 @@ class CartController extends Controller
             // return $cart;
             $cart->save();
         }
-        request()->session()->flash('success', 'Product successfully added to cart.');
+        request()->session()->flash('success', 'Produk berhasil ditambahkan ke keranjang');
         return back();
     }
 
