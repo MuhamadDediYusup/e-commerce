@@ -7,7 +7,7 @@
 
 </head>
 
-<body class="bg-gradient-primary">
+<body class="bg-gradient-success">
 
     <div class="container">
 
@@ -20,9 +20,9 @@
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
                         <div class="row">
-                            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
-                            <div class="col-lg-6">
+                            <div class="col-lg-12">
                                 <div class="p-5">
+                                        <img src="{{asset('backend/img/logo3.png')}}" alt="login" class="img-fluid mx-auto d-block" style="width: 200px;">
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Selamat Datang Kembali!</h1>
                                     </div>
@@ -43,7 +43,7 @@
                                         <div class="form-group">
                                             <input type="password"
                                                 class="form-control form-control-user @error('password') is-invalid @enderror"
-                                                id="exampleInputPassword" placeholder="Password" name="password"
+                                                id="exampleInputPassword" placeholder="Masukkan Kata Sandi..." name="password"
                                                 required autocomplete="current-password">
                                             @error('password')
                                                 <span class="invalid-feedback" role="alert">
@@ -52,7 +52,7 @@
                                             @enderror
 
                                         </div>
-                                        <div class="form-group">
+                                        {{-- <div class="form-group">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" name="remember"
                                                     id="remember" {{ old('remember') ? 'checked' : '' }}>
@@ -61,20 +61,20 @@
                                                     {{ __('Remember Me') }}
                                                 </label>
                                             </div>
-                                        </div>
-                                        <button type="submit" class="btn btn-primary btn-user btn-block">
+                                        </div> --}}
+                                        <button type="submit" class="btn btn-user btn-block btn-success">
                                             Login
                                         </button>
                                     </form>
-                                    <hr>
+                                    {{-- <hr> --}}
 
-                                    <div class="text-center">
+                                    {{-- <div class="text-center">
                                         @if (Route::has('password.request'))
                                             <a class="btn btn-link small" href="{{ route('password.request') }}">
                                                 {{ __('Forgot Your Password?') }}
                                             </a>
                                         @endif
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>
