@@ -64,6 +64,7 @@ class AdminController extends Controller
             'description' => 'required|string',
             'photo' => 'required',
             'logo' => 'required',
+            'coordinates' => 'required|string',
             'address' => 'required|string',
             'email' => 'required|email',
             'phone' => 'required|string',

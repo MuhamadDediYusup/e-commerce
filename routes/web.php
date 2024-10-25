@@ -7,7 +7,6 @@ use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\CartController;
-use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductReviewController;
 use App\Http\Controllers\PostCommentController;
@@ -31,7 +30,7 @@ use \UniSharp\LaravelFilemanager\Lfm;
 // CACHE CLEAR ROUTE
 Route::get('cache-clear', function () {
     Artisan::call('optimize:clear');
-    request()->session()->flash('success', 'Successfully cache cleared.');
+    request()->session()->flash('success', 'Sukses! Cache berhasil dihapus');
     return redirect()->back();
 })->name('cache.clear');
 
@@ -60,7 +59,6 @@ Route::get('/', [FrontendController::class, 'home'])->name('home');
 Route::get('/home', [FrontendController::class, 'index']);
 Route::get('/about-us', [FrontendController::class, 'aboutUs'])->name('about-us');
 Route::get('/contact', [FrontendController::class, 'contact'])->name('contact');
-Route::post('/contact/message', [MessageController::class, 'store'])->name('contact.store');
 Route::get('product-detail/{slug}', [FrontendController::class, 'productDetail'])->name('product-detail');
 Route::post('/product/search', [FrontendController::class, 'productSearch'])->name('product.search');
 Route::get('/product-cat/{slug}', [FrontendController::class, 'productCat'])->name('product-cat');
@@ -76,12 +74,7 @@ Route::get('/cart', function () {
     return view('frontend.pages.cart');
 })->name('cart');
 Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout')->middleware('user');
-// Wishlist
-Route::get('/wishlist', function () {
-    return view('frontend.pages.wishlist');
-})->name('wishlist');
-Route::get('/wishlist/{slug}', [WishlistController::class, 'wishlist'])->name('add-to-wishlist')->middleware('user');
-Route::get('wishlist-delete/{id}', [WishlistController::class, 'wishlistDelete'])->name('wishlist-delete');
+
 Route::post('cart/order', [OrderController::class, 'store'])->name('cart.order');
 Route::get('order/pdf/{id}', [OrderController::class, 'pdf'])->name('order.pdf');
 Route::get('/income', [OrderController::class, 'incomeChart'])->name('product.order.income');
@@ -100,9 +93,6 @@ Route::post('/subscribe', [FrontendController::class, 'subscribe'])->name('subsc
 Route::resource('/review', 'ProductReviewController');
 Route::post('product/{slug}/review', [ProductReviewController::class, 'store'])->name('review.store');
 
-// Post Comment
-Route::post('post/{slug}/comment', [PostCommentController::class, 'store'])->name('post-comment.store');
-Route::resource('/comment', 'PostCommentController');
 // Coupon
 Route::post('/coupon-store', [CouponController::class, 'couponStore'])->name('coupon-store');
 // Payment
@@ -133,15 +123,6 @@ Route::group(['prefix' => '/admin', 'middleware' => ['auth', 'admin']], function
     Route::resource('/product', 'ProductController');
     // Ajax for sub category
     Route::post('/category/{id}/child', 'CategoryController@getChildByParent');
-    // POST category
-    Route::resource('/post-category', 'PostCategoryController');
-    // Post tag
-    Route::resource('/post-tag', 'PostTagController');
-    // Post
-    Route::resource('/post', 'PostController');
-    // Message
-    Route::resource('/message', 'MessageController');
-    Route::get('/message/five', [MessageController::class, 'messageFive'])->name('messages.five');
 
     // Order
     Route::resource('/order', 'OrderController');

@@ -78,8 +78,8 @@
                     <label for="inputPhoto" class="col-form-label">Foto <span class="text-danger">*</span></label>
                     <div class="input-group">
                         <span class="input-group-btn">
-                            <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
-                                <i class="fa fa-picture-o"></i> Pilih
+                            <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary text-white">
+                                <i class="fas fa-image"></i> Pilih
                             </a>
                         </span>
                         <input id="thumbnail" class="form-control" type="text" name="photo"

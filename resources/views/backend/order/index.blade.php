@@ -9,7 +9,7 @@
             </div>
         </div>
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary float-left">Daftar Pesanan</h6>
+            <h6 class="m-0 font-weight-bold text-success float-left">Daftar Pesanan</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -17,28 +17,28 @@
                     <table class="table table-bordered" id="order-dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th>S.N.</th>
-                                <th>Order No.</th>
-                                <th>Name</th>
+                                <th>No</th>
+                                <th>Nomor Pesanan</th>
+                                <th>Nama</th>
                                 <th>Email</th>
-                                <th>Quantity</th>
-                                <th>Charge</th>
-                                <th>Total Amount</th>
+                                <th>Jumlah</th>
+                                <th>Biaya</th>
+                                <th>Total Harga</th>
                                 <th>Status</th>
-                                <th>Action</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
-                                <th>S.N.</th>
-                                <th>Order No.</th>
-                                <th>Name</th>
+                                <th>No</th>
+                                <th>Nomor Pesanan</th>
+                                <th>Nama</th>
                                 <th>Email</th>
-                                <th>Quantity</th>
-                                <th>Charge</th>
-                                <th>Total Amount</th>
+                                <th>Jumlah</th>
+                                <th>Biaya</th>
+                                <th>Total Harga</th>
                                 <th>Status</th>
-                                <th>Action</th>
+                                <th>Aksi</th>
                             </tr>
                         </tfoot>
                         <tbody>
@@ -56,19 +56,19 @@
                                     <td>{{ $order->quantity }}</td>
                                     <td>
                                         @foreach ($shipping_charge as $data)
-                                            $ {{ number_format($data, 2) }}
+                                            Rp. {{ number_format($data, 2) }}
                                         @endforeach
                                     </td>
-                                    <td>${{ number_format($order->total_amount, 2) }}</td>
+                                    <td>Rp. {{ number_format($order->total_amount, 2) }}</td>
                                     <td>
                                         @if ($order->status == 'new')
-                                            <span class="badge badge-primary">{{ $order->status }}</span>
+                                            <span class="badge badge-primary">Pesanan Baru</span>
                                         @elseif($order->status == 'process')
-                                            <span class="badge badge-warning">{{ $order->status }}</span>
+                                            <span class="badge badge-warning">Proses</span>
                                         @elseif($order->status == 'delivered')
-                                            <span class="badge badge-success">{{ $order->status }}</span>
+                                            <span class="badge badge-success">Telah Dikirim</span>
                                         @else
-                                            <span class="badge badge-danger">{{ $order->status }}</span>
+                                            <span class="badge badge-danger">Batal</span>
                                         @endif
                                     </td>
                                     <td>
@@ -77,7 +77,7 @@
                                             style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip"
                                             title="view" data-placement="bottom"><i class="fas fa-eye"></i></a>
                                         <a href="{{ route('order.edit', $order->id) }}"
-                                            class="btn btn-primary btn-sm float-left mr-1"
+                                            class="btn btn-success btn-sm float-left mr-1"
                                             style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip"
                                             title="edit" data-placement="bottom"><i class="fas fa-edit"></i></a>
                                         <form method="POST" action="{{ route('order.destroy', [$order->id]) }}">

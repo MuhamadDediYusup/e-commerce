@@ -5,7 +5,6 @@ use App\Models\Category;
 use App\Models\PostTag;
 use App\Models\PostCategory;
 use App\Models\Order;
-use App\Models\Wishlist;
 use App\Models\Shipping;
 use App\Models\Cart;
 // use Auth;
@@ -109,35 +108,6 @@ class Helper
         if (Auth::check()) {
             if ($user_id == "") $user_id = auth()->user()->id;
             return Cart::where('user_id', $user_id)->where('order_id', null)->sum('amount');
-        } else {
-            return 0;
-        }
-    }
-    // Wishlist Count
-    public static function wishlistCount($user_id = '')
-    {
-
-        if (Auth::check()) {
-            if ($user_id == "") $user_id = auth()->user()->id;
-            return Wishlist::where('user_id', $user_id)->where('cart_id', null)->sum('quantity');
-        } else {
-            return 0;
-        }
-    }
-    public static function getAllProductFromWishlist($user_id = '')
-    {
-        if (Auth::check()) {
-            if ($user_id == "") $user_id = auth()->user()->id;
-            return Wishlist::with('product')->where('user_id', $user_id)->where('cart_id', null)->get();
-        } else {
-            return 0;
-        }
-    }
-    public static function totalWishlistPrice($user_id = '')
-    {
-        if (Auth::check()) {
-            if ($user_id == "") $user_id = auth()->user()->id;
-            return Wishlist::where('user_id', $user_id)->where('cart_id', null)->sum('amount');
         } else {
             return 0;
         }

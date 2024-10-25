@@ -1,5 +1,5 @@
 @extends('frontend.layouts.master')
-@section('title','Cart Page')
+@section('title','Keranjang Belanja')
 @section('main-content')
 <!-- Breadcrumbs -->
 <div class="breadcrumbs">
@@ -9,7 +9,7 @@
                 <div class="bread-inner">
                     <ul class="bread-list">
                         <li><a href="{{('home')}}">Beranda<i class="ti-arrow-right"></i></a></li>
-                        <li class="active"><a href="">Cart</a></li>
+                        <li class="active"><a href="">Keranjang Belanja</a></li>
                     </ul>
                 </div>
             </div>
@@ -203,7 +203,7 @@
         </div>
     </div>
 </section>
-<!-- End Shop Services Area --> 
+<!-- End Shop Services Area -->
 
 @endsection
 @push('styles')

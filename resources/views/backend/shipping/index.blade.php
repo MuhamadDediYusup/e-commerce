@@ -9,8 +9,8 @@
             </div>
         </div>
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary float-left">Daftar Pengiriman</h6>
-            <a href="{{ route('shipping.create') }}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip"
+            <h6 class="m-0 font-weight-bold text-success float-left">Daftar Pengiriman</h6>
+            <a href="{{ route('shipping.create') }}" class="btn btn-success btn-sm float-right" data-toggle="tooltip"
                 data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Tambah Pengiriman</a>
         </div>
         <div class="card-body">
@@ -50,7 +50,7 @@
                                     </td>
                                     <td>
                                         <a href="{{ route('shipping.edit', $shipping->id) }}"
-                                            class="btn btn-primary btn-sm float-left mr-1"
+                                            class="btn btn-success btn-sm float-left mr-1"
                                             style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip"
                                             title="edit" data-placement="bottom"><i class="fas fa-edit"></i></a>
                                         <form method="POST" action="{{ route('shipping.destroy', [$shipping->id]) }}">

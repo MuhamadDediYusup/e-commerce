@@ -12,6 +12,7 @@ use Notification;
 use Helper;
 use Illuminate\Support\Str;
 use App\Notifications\StatusNotification;
+use Illuminate\Support\Facades\Validator;
 
 class OrderController extends Controller
 {
@@ -127,9 +128,8 @@ class OrderController extends Controller
             $order_data['payment_status']='Unpaid';
         }
         $order->fill($order_data);
-        $status=$order->save();
+        $order->save();
         if($order)
-        // dd($order->id);
         $users=User::where('role','admin')->first();
         $details=[
             'title'=>'New order created',
@@ -146,8 +146,7 @@ class OrderController extends Controller
         }
         Cart::where('user_id', auth()->user()->id)->where('order_id', null)->update(['order_id' => $order->id]);
 
-        // dd($users);        
-        request()->session()->flash('success','Your product successfully placed in order');
+        request()->session()->flash('success','Pesanan berhasil dibuat');
         return redirect()->route('home');
     }
 
@@ -240,6 +239,19 @@ class OrderController extends Controller
 
     public function productTrackOrder(Request $request){
         // return $request->all();
+
+        $data = $request->all();
+
+        $validate = Validator::make($data, [
+            'order_number' => 'required',
+        ], [
+            'order_number.required' => 'Wajib diisi',
+        ]);
+
+        if($validate->fails()){
+            return redirect()->back()->withErrors($validate)->withInput();
+        }
+
         $order=Order::where('user_id',auth()->user()->id)->where('order_number',$request->order_number)->first();
         if($order){
             if($order->status=="new"){
@@ -250,17 +262,17 @@ class OrderController extends Controller
             elseif($order->status=="process"){
                 request()->session()->flash('success','Your order is under processing please wait.');
                 return redirect()->route('home');
-    
+
             }
             elseif($order->status=="delivered"){
                 request()->session()->flash('success','Your order is successfully delivered.');
                 return redirect()->route('home');
-    
+
             }
             else{
                 request()->session()->flash('error','Your order canceled. please try again');
                 return redirect()->route('home');
-    
+
             }
         }
         else{

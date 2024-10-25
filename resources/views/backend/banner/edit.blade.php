@@ -1,5 +1,5 @@
 @extends('backend.layouts.master')
-@section('title', 'E-SHOP || Banner Edit')
+@section('title', 'Berkah Tani || Ubah Banner')
 @section('main-content')
 
     <div class="card">
@@ -29,7 +29,7 @@
                     <label for="inputPhoto" class="col-form-label">Foto <span class="text-danger">*</span></label>
                     <div class="input-group">
                         <span class="input-group-btn">
-                            <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
+                            <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary text-white">
                                 <i class="fa fa-picture-o"></i> Pilih
                             </a>
                         </span>

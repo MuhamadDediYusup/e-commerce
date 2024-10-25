@@ -44,7 +44,8 @@ class FrontendController extends Controller
 
     public function aboutUs()
     {
-        return view('frontend.pages.about-us');
+        $setting = \App\Models\Settings::first();
+        return view('frontend.pages.about-us', compact('setting'));
     }
 
     public function contact()
@@ -55,7 +56,6 @@ class FrontendController extends Controller
     public function productDetail($slug)
     {
         $product_detail = Product::getProductBySlug($slug);
-        // dd($product_detail);
         return view('frontend.pages.product_detail')->with('product_detail', $product_detail);
     }
 
@@ -224,7 +224,6 @@ class FrontendController extends Controller
     public function productCat(Request $request)
     {
         $products = Category::getProductByCat($request->slug);
-        // return $request->slug;
         $recent_products = Product::where('status', 'active')->orderBy('id', 'DESC')->limit(3)->get();
 
         if (request()->is('e-shop.loc/product-grids')) {

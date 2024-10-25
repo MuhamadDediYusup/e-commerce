@@ -1,5 +1,5 @@
 @extends('frontend.layouts.master')
-@section('title','Berkah Tani | Produk')
+@section('title','Berkah Tani | Hubungi Kami')
 @section('main-content')
 <!-- Breadcrumbs -->
 <div class="breadcrumbs">
@@ -33,7 +33,7 @@
                             <h3>Tulis pesan kepada kami @auth @else<span style="font-size:12px;" class="text-danger">[Anda
                                     perlu login terlebih dahulu]</span>@endauth</h3>
                         </div>
-                        <form class="form-contact form contact_form" method="post" action="{{route('contact.store')}}"
+                        <form class="form-contact form contact_form" method="post" action="#"
                             id="contactForm" novalidate="novalidate">
                             @csrf
                             <div class="row">

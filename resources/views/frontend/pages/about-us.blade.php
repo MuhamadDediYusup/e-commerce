@@ -30,11 +30,8 @@
         <div class="row">
             <div class="col-lg-6 col-12">
                 <div class="about-content">
-                    @php
-                    $settings=DB::table('settings')->get();
-                    @endphp
                     <h3>Selamat Datang di <span>Berkah Tani</span></h3>
-                    <p>@foreach($settings as $data) {{$data->description}} @endforeach</p>
+                    <p>{{$setting->description}}</p>
                     <div class="button">
                         <a href="{{route('contact')}}" class="btn primary">Hubungi Kami</a>
                     </div>
@@ -42,8 +39,10 @@
             </div>
             <div class="col-lg-6 col-12">
                 <div class="about-img overlay">
-                    <img src="@foreach($settings as $data) {{$data->photo}} @endforeach"
-                        alt="@foreach($settings as $data) {{$data->photo}} @endforeach">
+                    {!!$setting->coordinates!!}
+                    {{-- <img src="@foreach($settings as $data) {{$data->photo}} @endforeach"
+                        alt="@foreach($settings as $data) {{$data->photo}} @endforeach"> --}}
+
                 </div>
             </div>
         </div>
