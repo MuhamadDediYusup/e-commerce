@@ -12,6 +12,7 @@ use Notification;
 use Helper;
 use Illuminate\Support\Str;
 use App\Notifications\StatusNotification;
+use Illuminate\Support\Facades\Validator;
 
 class OrderController extends Controller
 {
@@ -238,6 +239,19 @@ class OrderController extends Controller
 
     public function productTrackOrder(Request $request){
         // return $request->all();
+
+        $data = $request->all();
+
+        $validate = Validator::make($data, [
+            'order_number' => 'required',
+        ], [
+            'order_number.required' => 'Wajib diisi',
+        ]);
+
+        if($validate->fails()){
+            return redirect()->back()->withErrors($validate)->withInput();
+        }
+
         $order=Order::where('user_id',auth()->user()->id)->where('order_number',$request->order_number)->first();
         if($order){
             if($order->status=="new"){

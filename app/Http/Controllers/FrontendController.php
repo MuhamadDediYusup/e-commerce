@@ -44,7 +44,8 @@ class FrontendController extends Controller
 
     public function aboutUs()
     {
-        return view('frontend.pages.about-us');
+        $setting = \App\Models\Settings::first();
+        return view('frontend.pages.about-us', compact('setting'));
     }
 
     public function contact()

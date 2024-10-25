@@ -6,8 +6,6 @@
         <div class="card-body">
             <form method="post" action="{{ route('settings.update') }}">
                 @csrf
-                {{-- @method('PATCH') --}}
-                {{-- {{dd($data)}} --}}
                 <div class="form-group">
                     <label for="short_des" class="col-form-label">Deskripsi Singkat <span class="text-danger">*</span></label>
                     <textarea class="form-control" id="quote" name="short_des">{{ $data->short_des }}</textarea>
@@ -66,6 +64,15 @@
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
+
+                <div class="form-group">
+                    <label for="coordinates" class="col-form-label">Koordinat Map <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" name="coordinates" required value="{{ $data->coordinates }}">
+                    @error('coordinates')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+
                 <div class="form-group">
                     <label for="email" class="col-form-label">Email <span class="text-danger">*</span></label>
                     <input type="email" class="form-control" name="email" required value="{{ $data->email }}">
