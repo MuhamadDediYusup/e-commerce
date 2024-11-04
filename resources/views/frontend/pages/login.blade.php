@@ -65,6 +65,9 @@
                                             class="ti-google"></i></a> --}}
 
                                 </div>
+                                <div class="form-group login-btn mt-2">
+                                    <a href="{{route('login')}}" class="btn">Masuk Sebagai Admin</a>
+                                </div>
                                 <div class="checkbox">
                                     <label class="checkbox-inline" for="2"><input name="news" id="2"
                                             type="checkbox">Ingat saya</label>
