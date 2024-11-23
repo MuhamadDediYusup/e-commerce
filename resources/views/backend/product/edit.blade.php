@@ -95,6 +95,49 @@
                     @enderror
                 </div>
 
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="weight" class="col-form-label">Berat (gram) <span class="text-danger">*</span></label>
+                            <input id="weight" type="number" name="weight" placeholder="Tambahkan berat"
+                                value="{{ $product->weight }}" class="form-control">
+                            @error('weight')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="width" class="col-form-label">Lebar (cm) <span class="text-danger">*</span></label>
+                            <input id="width" type="number" name="width" placeholder="Tambahkan lebar"
+                                value="{{ $product->width }}" class="form-control">
+                            @error('width')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="height" class="col-form-label">Tinggi (cm) <span class="text-danger">*</span></label>
+                            <input id="height" type="number" name="height" placeholder="Tambahkan tinggi"
+                                value="{{ $product->height }}" class="form-control">
+                            @error('height')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="length" class="col-form-label">Panjang (cm) <span class="text-danger">*</span></label>
+                            <input id="length" type="number" name="length" placeholder="Tambahkan panjang"
+                                value="{{ $product->length }}" class="form-control">
+                            @error('length')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <label for="status" class="col-form-label">Status <span class="text-danger">*</span></label>
                     <select name="status" class="form-control">

@@ -18,7 +18,7 @@ class ProductController extends Controller
     public function index()
     {
         $products=Product::getAllProduct();
-        // return $products;
+
         return view('backend.product.index')->with('products',$products);
     }
 
@@ -30,7 +30,7 @@ class ProductController extends Controller
     public function create()
     {
         $category=Category::get();
-        // return $category;
+
         return view('backend.product.create')->with('categories',$category);
     }
 
@@ -54,6 +54,10 @@ class ProductController extends Controller
             'price'=>'required|numeric',
             'discount'=>'nullable|numeric',
             'category_id'=>'required|exists:categories,id',
+            'length'=>'required|numeric',
+            'width'=>'required|numeric',
+            'height'=>'required|numeric',
+            'weight'=>'required|numeric',
         ]);
 
         $data=$request->all();
@@ -64,8 +68,8 @@ class ProductController extends Controller
         }
         $data['slug']=$slug;
         $data['is_featured']=$request->input('is_featured',0);
-        // return $size;
-        // return $data;
+
+
         $status=Product::create($data);
         if($status){
             request()->session()->flash('success','Produk berhasil ditambahkan');
@@ -98,10 +102,9 @@ class ProductController extends Controller
     {
         $product=Product::findOrFail($id);
         $category=Category::get();
-        $items=Product::where('id',$id)->get();
-        // return $items;
+
         return view('backend.product.edit')->with('product',$product)
-                    ->with('categories',$category)->with('items',$items);
+                    ->with('categories',$category);
     }
 
     /**
@@ -125,11 +128,15 @@ class ProductController extends Controller
             'price'=>'required|numeric',
             'discount'=>'nullable|numeric',
             'category_id'=>'required|exists:categories,id',
+            'length'=>'required|numeric',
+            'width'=>'required|numeric',
+            'height'=>'required|numeric',
+            'weight'=>'required|numeric',
         ]);
 
         $data=$request->all();
         $data['is_featured']=$request->input('is_featured',0);
-        // return $data;
+
         $status=$product->fill($data)->save();
         if($status){
             request()->session()->flash('success','Produk berhasil diubah');

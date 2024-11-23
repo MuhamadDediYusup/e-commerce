@@ -25,6 +25,10 @@ class CreateProductsTable extends Migration
             $table->enum('status',['active','inactive'])->default('inactive');
             $table->float('price');
             $table->float('discount')->nullable();
+            $table->tinyInteger('length')->nullable();
+            $table->tinyInteger('width')->nullable();
+            $table->tinyInteger('height')->nullable();
+            $table->tinyInteger('weight')->nullable();
             $table->boolean('is_featured')->deault(false);
             $table->timestamps();
         });

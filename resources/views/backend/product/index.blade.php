@@ -19,7 +19,7 @@
             <table class="table table-bordered" id="product-dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th>S.N.</th>
+                        <th>No.</th>
                         <th>Nama Produk</th>
                         <th>Kategori</th>
                         <th>Tersedia</th>
@@ -33,7 +33,7 @@
                 </thead>
                 <tfoot>
                     <tr>
-                        <th>S.N.</th>
+                        <th>No.</th>
                         <th>Nama Produk</th>
                         <th>Kategori</th>
                         <th>Tersedia</th>
@@ -50,7 +50,7 @@
                     @foreach ($products as $product)
 
                     <tr>
-                        <td>{{ $product->id }}</td>
+                        <td>{{ $loop->index + 1 }}</td>
                         <td>{{ $product->title }}</td>
                         <td>{{ $product->category['title'] }}
                         </td>
@@ -85,7 +85,7 @@
                         </td>
                         <td>
                             <a href="{{ route('product.edit', $product->id) }}"
-                                class="btn btn-success btn-sm float-left mr-1"
+                                class="btn btn-success btn-sm"
                                 style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit"
                                 data-placement="bottom"><i class="fas fa-edit"></i></a>
                             <form method="POST" action="{{ route('product.destroy', [$product->id]) }}">
