@@ -19,7 +19,7 @@
                     <table class="table table-bordered" id="banner-dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th>S.N.</th>
+                                <th>No.</th>
                                 <th>Nama Pengiriman</th>
                                 <th>Harga</th>
                                 <th>Status</th>
@@ -28,7 +28,7 @@
                         </thead>
                         <tfoot>
                             <tr>
-                                <th>S.N.</th>
+                                <th>No.</th>
                                 <th>Nama Pengiriman</th>
                                 <th>Harga</th>
                                 <th>Status</th>
@@ -38,8 +38,8 @@
                         <tbody>
                             @foreach ($shippings as $shipping)
                                 <tr>
-                                    <td>{{ $shipping->id }}</td>
-                                    <td>{{ $shipping->type }}</td>
+                                    <td>{{ $loop->index + 1 }}</td>
+                                    <td>{{ $shipping->name }}</td>
                                     <td>Rp. {{ number_format($shipping->price, 2) }}</td>
                                     <td>
                                         @if ($shipping->status == 'active')
