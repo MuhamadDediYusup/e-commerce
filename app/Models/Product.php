@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Product extends Model
 {
-    protected $fillable = ['category_id', 'title', 'slug', 'summary', 'description', 'price', 'discount', 'status', 'photo', 'stock', 'is_featured'];
+    protected $fillable = ['category_id', 'title', 'slug', 'summary', 'description', 'price', 'discount', 'status', 'photo', 'stock', 'is_featured', 'weight'];
 
     // public function cat_info(){
     //     return $this->hasOne('App\Models\Category','id','cat_id');

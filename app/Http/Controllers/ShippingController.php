@@ -38,12 +38,11 @@ class ShippingController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'type'=>'string|required',
+            'name'=>'string|required',
             'price'=>'nullable|numeric',
             'status'=>'required|in:active,inactive'
         ]);
         $data=$request->all();
-        // return $data;
         $status=Shipping::create($data);
         if($status){
             request()->session()->flash('success','Pengiriman berhasil ditambahkan');
@@ -91,7 +90,7 @@ class ShippingController extends Controller
     {
         $shipping=Shipping::find($id);
         $this->validate($request,[
-            'type'=>'string|required',
+            'name'=>'string|required',
             'price'=>'nullable|numeric',
             'status'=>'required|in:active,inactive'
         ]);

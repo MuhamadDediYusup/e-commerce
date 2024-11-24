@@ -45,7 +45,8 @@
                     <select name="category_id" id="category_id" class="form-control">
                         <option value="">--Pilih Kategori--</option>
                         @foreach ($categories as $key => $cat_data)
-                            <option value='{{ $cat_data->id }}' {{ $product->category_id == $cat_data->id ? 'selected' : '' }}>
+                            <option value='{{ $cat_data->id }}'
+                                {{ $product->category_id == $cat_data->id ? 'selected' : '' }}>
                                 {{ $cat_data->title }}</option>
                         @endforeach
                     </select>
@@ -91,6 +92,15 @@
                     </div>
                     <div id="holder" style="margin-top:15px;max-height:100px;"></div>
                     @error('photo')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="form-group">
+                    <label for="weight" class="col-form-label">Berat (gram) <span class="text-danger">*</span></label>
+                    <input id="weight" type="number" name="weight" placeholder="Tambahkan berat"
+                        value="{{ $product->weight }}" class="form-control">
+                    @error('weight')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
