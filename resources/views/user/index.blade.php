@@ -14,84 +14,92 @@
         @endphp
         <!-- Order -->
         <div class="col-xl-12 col-lg-12">
-            <table class="table table-bordered" id="order-dataTable" width="100%" cellspacing="0">
-                <thead>
-                    <tr>
-                        <th>No.</th>
-                        <th>No. Pesanan</th>
-                        <th>Nama</th>
-                        <th>Email</th>
-                        <th>Jumlah</th>
-                        <th>Total Jumlah</th>
-                        <th>Status</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                {{-- <tfoot>
-                    <tr>
-                        <th>S.N.</th>
-                        <th>Order No.</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Quantity</th>
-                        <th>Total Amount</th>
-                        <th>Status</th>
-                        <th>Action</th>
-                    </tr>
-                </tfoot> --}}
-                <tbody>
-                    @if(count($orders)>0)
-                    @foreach($orders as $order)
-                    <tr>
-                        <td>{{$order->id}}</td>
-                        <td>{{$order->order_number}}</td>
-                        <td>{{$order->first_name}} {{$order->last_name}}</td>
-                        <td>{{$order->email}}</td>
-                        <td>{{$order->quantity}}</td>
-                        <td>${{number_format($order->total_amount,2)}}</td>
-                        <td>
-                            @if($order->status=='new')
-                            <span class="badge badge-primary">{{$order->status}}</span>
-                            @elseif($order->status=='process')
-                            <span class="badge badge-warning">{{$order->status}}</span>
-                            @elseif($order->status=='delivered')
-                            <span class="badge badge-success">{{$order->status}}</span>
-                            @else
-                            <span class="badge badge-danger">{{$order->status}}</span>
-                            @endif
+            <div class="card shadow mb-4">
+                <div class="card-header">
+                    <h6 class="m-0 font-weight-bold text-success">Daftar Pesanan</h6>
+                </div>
+                <div class="card-bod">
+                    <table class="table table-bordered" id="order-dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th>No. Pesanan</th>
+                                <th>Nama</th>
+                                <th>Email</th>
+                                <th>Jumlah</th>
+                                <th>Total Jumlah</th>
+                                <th>Status</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        {{-- <tfoot>
+                            <tr>
+                                <th>S.N.</th>
+                                <th>Order No.</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Quantity</th>
+                                <th>Total Amount</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </tfoot> --}}
+                        <tbody>
+                            @if(count($orders)>0)
+                            @foreach($orders as $order)
+                            <tr>
+                                <td>{{$order->id}}</td>
+                                <td>{{$order->order_number}}</td>
+                                <td>{{$order->first_name}} {{$order->last_name}}</td>
+                                <td>{{$order->email}}</td>
+                                <td>{{$order->quantity}}</td>
+                                <td>${{number_format($order->total_amount,2)}}</td>
+                                <td>
+                                    @if($order->status=='new')
+                                    <span class="badge badge-primary">{{$order->status}}</span>
+                                    @elseif($order->status=='process')
+                                    <span class="badge badge-warning">{{$order->status}}</span>
+                                    @elseif($order->status=='delivered')
+                                    <span class="badge badge-success">{{$order->status}}</span>
+                                    @else
+                                    <span class="badge badge-danger">{{$order->status}}</span>
+                                    @endif
 
-                            @if($order->payment_status=='paid')
-                            <span class="badge badge-success">Dibayar</span>
-                            @elseif($order->payment_status=='unpaid')
-                            <span class="badge badge-warning">Belum Dibayar</span>
+                                    @if($order->payment_status=='paid')
+                                    <span class="badge badge-success">Dibayar</span>
+                                    @elseif($order->payment_status=='unpaid')
+                                    <span class="badge badge-warning">Belum Dibayar</span>
+                                    @else
+                                    <span class="badge badge-danger">Gagal</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    <a href="{{route('user.order.show',$order->id)}}"
+                                        class="btn btn-warning btn-sm float-left mr-1"
+                                        style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip"
+                                        title="view" data-placement="bottom"><i class="fas fa-eye"></i></a>
+                                    <form method="POST" action="{{route('user.order.delete',[$order->id])}}">
+                                        @csrf
+                                        @method('delete')
+                                        <button class="btn btn-danger btn-sm dltBtn" data-id={{$order->id}}
+                                            style="height:30px;
+                                            width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom"
+                                            title="Delete"><i class="fas fa-trash-alt"></i></button>
+                                    </form>
+                                </td>
+                            </tr>
+                            @endforeach
                             @else
-                            <span class="badge badge-danger">Gagal</span>
+                            <td colspan="8" class="text-center">
+                                <h4 class="my-4">Anda belum memiliki pesanan!! Silakan pesan beberapa produk 😊</h4>
+                            </td>
                             @endif
-                        </td>
-                        <td>
-                            <a href="{{route('user.order.show',$order->id)}}"
-                                class="btn btn-warning btn-sm float-left mr-1"
-                                style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="view"
-                                data-placement="bottom"><i class="fas fa-eye"></i></a>
-                            <form method="POST" action="{{route('user.order.delete',[$order->id])}}">
-                                @csrf
-                                @method('delete')
-                                <button class="btn btn-danger btn-sm dltBtn" data-id={{$order->id}} style="height:30px;
-                                    width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom"
-                                    title="Delete"><i class="fas fa-trash-alt"></i></button>
-                            </form>
-                        </td>
-                    </tr>
-                    @endforeach
-                    @else
-                    <td colspan="8" class="text-center">
-                        <h4 class="my-4">You have no order yet!! Please order some products</h4>
-                    </td>
-                    @endif
-                </tbody>
-            </table>
+                        </tbody>
+                    </table>
 
-            {{$orders->links()}}
+                    {{$orders->links()}}
+                </div>
+            </div>
         </div>
     </div>
 
