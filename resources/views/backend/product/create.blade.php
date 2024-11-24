@@ -78,7 +78,8 @@
                     <label for="inputPhoto" class="col-form-label">Foto <span class="text-danger">*</span></label>
                     <div class="input-group">
                         <span class="input-group-btn">
-                            <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary text-white">
+                            <a id="lfm" data-input="thumbnail" data-preview="holder"
+                                class="btn btn-primary text-white">
                                 <i class="fas fa-image"></i> Pilih
                             </a>
                         </span>
@@ -87,6 +88,15 @@
                     </div>
                     <div id="holder" style="margin-top:15px;max-height:100px;"></div>
                     @error('photo')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="form-group">
+                    <label for="weight" class="col-form-label">Berat (gram) <span class="text-danger">*</span></label>
+                    <input id="weight" type="number" name="weight" placeholder="Tambahkan berat"
+                        value="{{ old('weight') }}" class="form-control">
+                    @error('weight')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
