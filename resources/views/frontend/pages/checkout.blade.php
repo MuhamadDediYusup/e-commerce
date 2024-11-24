@@ -32,7 +32,6 @@
                     <div class="checkout-form">
                         <h2>Lakukan Checkout Anda di Sini</h2>
                         <p>Silakan mendaftar untuk melakukan checkout lebih cepat</p>
-                        <!-- Form -->
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-12">
                                 <div class="form-group">
@@ -108,12 +107,10 @@
                             </div>
 
                         </div>
-                        <!--/ End Form -->
                     </div>
                 </div>
                 <div class="col-lg-4 col-12">
                     <div class="order-details">
-                        <!-- Order Widget -->
                         <div class="single-widget">
                             <h2>TOTAL KERANJANG</h2>
                             <div class="content">
@@ -156,32 +153,6 @@
                                 </ul>
                             </div>
                         </div>
-                        <!--/ End Order Widget -->
-                        <!-- Order Widget -->
-                        <div class="single-widget">
-                            <h2>Pembayaran</h2>
-                            <div class="content">
-                                <div class="checkbox">
-                                    {{-- <label class="checkbox-inline" for="1"><input name="updates" id="1"
-                                            type="checkbox"> Check Payments</label> --}}
-                                    <form-group>
-                                        <input name="payment_method" type="radio" value="cod"> <label> Bayar di
-                                            Tempat</label><br>
-                                        <input name="payment_method" type="radio" value="paypal"> <label> PayPal</label>
-                                    </form-group>
-
-                                </div>
-                            </div>
-                        </div>
-                        <!--/ End Order Widget -->
-                        <!-- Payment Method Widget -->
-                        <div class="single-widget payement">
-                            <div class="content">
-                                <img src="{{('backend/img/payment-method.png')}}" alt="#">
-                            </div>
-                        </div>
-                        <!--/ End Payment Method Widget -->
-                        <!-- Button Widget -->
                         <div class="single-widget get-button">
                             <div class="content">
                                 <div class="button">
@@ -189,49 +160,107 @@
                                 </div>
                             </div>
                         </div>
-                        <!--/ End Button Widget -->
                     </div>
                 </div>
             </div>
         </form>
     </div>
 </section>
-<!--/ End Checkout -->
 
-<!-- Start Shop Services Area -->
 <section class="shop-services section home">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-3 col-md-6 col-12">
-                <!-- Mulai Layanan Tunggal -->
                 <div class="single-service">
                     <i class="ti-rocket"></i>
                     <h4>Pengiriman Gratis</h4>
                     <p>Pesanan di atas Rp100.000</p>
                 </div>
-                <!-- Akhir Layanan Tunggal -->
             </div>
             <div class="col-lg-3 col-md-6 col-12">
-                <!-- Mulai Layanan Tunggal -->
                 <div class="single-service">
                     <i class="ti-lock"></i>
                     <h4>Pembayaran Aman</h4>
                     <p>Pembayaran 100% aman</p>
                 </div>
-                <!-- Akhir Layanan Tunggal -->
             </div>
             <div class="col-lg-3 col-md-6 col-12">
-                <!-- Mulai Layanan Tunggal -->
                 <div class="single-service">
                     <i class="ti-tag"></i>
                     <h4>Harga Terbaik</h4>
                     <p>Harga terjamin</p>
                 </div>
-                <!-- Akhir Layanan Tunggal -->
             </div>
         </div>
     </div>
 </section>
+
+@push('scripts')
+<script src="{{asset('frontend/js/nice-select/js/jquery.nice-select.min.js')}}"></script>
+<script src="{{ asset('frontend/js/select2/js/select2.min.js') }}"></script>
+<script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script>
+<script>
+    const ORDER_ID = "{{ $order_id ?? '' }}"; // Sisipkan order_id dari backend
+</script>
+
+<script>
+    $(document).ready(function() { $("select.select2").select2(); });
+  		$('select.nice-select').niceSelect();
+</script>
+<script>
+    function showMe(box){
+			var checkbox=document.getElementById('shipping').style.display;
+			var vis= 'none';
+			if(checkbox=="none"){
+				vis='block';
+			}
+			if(checkbox=="block"){
+				vis="none";
+			}
+			document.getElementById(box).style.display=vis;
+		}
+</script>
+<script>
+    $(document).ready(function(){
+			$('.shipping select[name=shipping]').change(function(){
+				let cost = parseFloat( $(this).find('option:selected').data('price') ) || 0;
+				let subtotal = parseFloat( $('.order_subtotal').data('price') );
+				let coupon = parseFloat( $('.coupon_price').data('price') ) || 0;
+				$('#order_total_price span').text('$'+(subtotal + cost-coupon).toFixed(2));
+			});
+
+		});
+</script>
+<script>
+    document.getElementById('pay-button').addEventListener('click', function () {
+    fetch('/payment/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ order_id: ORDER_ID })
+    })
+    .then(response => response.json())
+    .then(data => {
+        snap.pay(data.snap_token, {
+            onSuccess: function(result) {
+                console.log('Payment success:', result);
+                alert('Payment successful!');
+            },
+            onPending: function(result) {
+                console.log('Waiting for payment:', result);
+                alert('Payment pending!');
+            },
+            onError: function(result) {
+                console.log('Payment failed:', result);
+                alert('Payment failed!');
+            }
+        });
+    });
+});
+
+</script>
+@endpush
+
+
 <!-- End Shop Services Area -->
 @endsection
 @push('styles')
@@ -283,40 +312,4 @@
         top: 14px;
     }
 </style>
-@endpush
-@push('scripts')
-<script src="{{asset('frontend/js/nice-select/js/jquery.nice-select.min.js')}}"></script>
-<script src="{{ asset('frontend/js/select2/js/select2.min.js') }}"></script>
-<script>
-    $(document).ready(function() { $("select.select2").select2(); });
-  		$('select.nice-select').niceSelect();
-</script>
-<script>
-    function showMe(box){
-			var checkbox=document.getElementById('shipping').style.display;
-			// alert(checkbox);
-			var vis= 'none';
-			if(checkbox=="none"){
-				vis='block';
-			}
-			if(checkbox=="block"){
-				vis="none";
-			}
-			document.getElementById(box).style.display=vis;
-		}
-</script>
-<script>
-    $(document).ready(function(){
-			$('.shipping select[name=shipping]').change(function(){
-				let cost = parseFloat( $(this).find('option:selected').data('price') ) || 0;
-				let subtotal = parseFloat( $('.order_subtotal').data('price') );
-				let coupon = parseFloat( $('.coupon_price').data('price') ) || 0;
-				// alert(coupon);
-				$('#order_total_price span').text('$'+(subtotal + cost-coupon).toFixed(2));
-			});
-
-		});
-
-</script>
-
 @endpush
