@@ -14,6 +14,7 @@ use App\Http\Controllers\CouponController;
 use App\Http\Controllers\PayPalController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PaymentController;
 use \UniSharp\LaravelFilemanager\Lfm;
 
 /*
@@ -96,11 +97,7 @@ Route::post('product/{slug}/review', [ProductReviewController::class, 'store'])-
 // Coupon
 Route::post('/coupon-store', [CouponController::class, 'couponStore'])->name('coupon-store');
 // Payment
-Route::get('payment', [PayPalController::class, 'payment'])->name('payment');
-Route::get('cancel', [PayPalController::class, 'cancel'])->name('payment.cancel');
-Route::get('payment/success', [PayPalController::class, 'success'])->name('payment.success');
-
-
+Route::get('/payment/retry/{id}', [PaymentController::class, 'retryPayment'])->name('payment.retry');
 // Backend section start
 
 Route::group(['prefix' => '/admin', 'middleware' => ['auth', 'admin']], function () {
@@ -153,6 +150,8 @@ Route::group(['prefix' => '/user', 'middleware' => ['user']], function () {
     //  Order
     Route::get('/order', "HomeController@orderIndex")->name('user.order.index');
     Route::get('/order/show/{id}', "HomeController@orderShow")->name('user.order.show');
+    Route::get('order/pay/{id}', [OrderController::class, 'pay'])->name('order.pay');
+
     Route::delete('/order/delete/{id}', [HomeController::class, 'userOrderDelete'])->name('user.order.delete');
     // Product Review
     Route::get('/user-review', [HomeController::class, 'productReviewIndex'])->name('user.productreview.index');

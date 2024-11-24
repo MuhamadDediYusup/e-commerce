@@ -22,6 +22,8 @@
                     <!-- Top Right -->
                     <div class="right-content">
                         <ul class="list-main">
+                            <li><i class="ti-archive"></i> <a href="{{route('user.order.index')}}">Daftar Pesanan</a>
+                            </li>
                             <li><i class="ti-location-pin"></i> <a href="{{route('order.track')}}">Lacak Pesanan</a>
                             </li>
                             {{-- <li><i class="ti-alarm-clock"></i> <a href="#">Daily deal</a></li> --}}
@@ -137,7 +139,8 @@
                                 <div class="bottom">
                                     <div class="total">
                                         <span>Total</span>
-                                        <span class="total-amount">Rp. {{number_format(Helper::totalCartPrice(),2)}}</span>
+                                        <span class="total-amount">Rp.
+                                            {{number_format(Helper::totalCartPrice(),2)}}</span>
                                     </div>
                                     <a href="{{route('checkout')}}" class="btn animate">Checkout</a>
                                 </div>
