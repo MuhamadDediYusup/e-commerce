@@ -8,9 +8,9 @@
                 @csrf
                 @method('PATCH')
                 <div class="form-group">
-                    <label for="inputTitle" class="col-form-label">Tipe <span class="text-danger">*</span></label>
-                    <input id="inputTitle" type="text" name="type" placeholder="Tambahkan tipe"
-                        value="{{ $shipping->type }}" class="form-control">
+                    <label for="inputTitle" class="col-form-label">Nama Jasa Pengiriman <span class="text-danger">*</span></label>
+                    <input id="inputTitle" type="text" name="name" placeholder="Tambahkan Jasa Pengiriman"
+                        value="{{ $shipping->name }}" class="form-control">
                     @error('title')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
