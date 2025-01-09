@@ -17,7 +17,7 @@ class PaymentController extends Controller
         $order = Order::findOrFail($id);
 
         if ($order->payment_status === 'failed') {
-            return redirect()->route('home')->with('error', 'Payment has already failed. Please contact support.');
+            return redirect()->route('home')->with('error', 'Pembayaran sudah gagal. Silahkan hubungi support.');
         }
 
         if ($order->payment_status === 'paid') {

@@ -354,10 +354,10 @@ class FrontendController extends Controller
         $data = $request->all();
         if (Auth::attempt(['email' => $data['email'], 'password' => $data['password'], 'status' => 'active'])) {
             Session::put('user', $data['email']);
-            request()->session()->flash('success', 'Successfully login');
+            request()->session()->flash('success', 'Login berhasil');
             return redirect()->route('home');
         } else {
-            request()->session()->flash('error', 'Invalid email and password pleas try again!');
+            request()->session()->flash('error', 'Email atau password salah, silahkan coba lagi!');
             return redirect()->back();
         }
     }
@@ -366,7 +366,7 @@ class FrontendController extends Controller
     {
         Session::forget('user');
         Auth::logout();
-        request()->session()->flash('success', 'Logout successfully');
+        request()->session()->flash('success', 'Logout berhasil');
         return back();
     }
 
@@ -387,10 +387,10 @@ class FrontendController extends Controller
         $check = $this->create($data);
         Session::put('user', $data['email']);
         if ($check) {
-            request()->session()->flash('success', 'Successfully registered');
+            request()->session()->flash('success', 'Registrasi berhasil');
             return redirect()->route('home');
         } else {
-            request()->session()->flash('error', 'Please try again!');
+            request()->session()->flash('error', 'Terjadi kesalahan, silahkan coba lagi!');
             return back();
         }
     }
@@ -414,14 +414,14 @@ class FrontendController extends Controller
         if (!Newsletter::isSubscribed($request->email)) {
             Newsletter::subscribePending($request->email);
             if (Newsletter::lastActionSucceeded()) {
-                request()->session()->flash('success', 'Subscribed! Please check your email');
+                request()->session()->flash('success', 'Berhasil subscribe! Silahkan cek email anda');
                 return redirect()->route('home');
             } else {
                 Newsletter::getLastError();
-                return back()->with('error', 'Something went wrong! please try again');
+                return back()->with('error', 'Terjadi kesalahan, silahkan coba lagi!');
             }
         } else {
-            request()->session()->flash('error', 'Already Subscribed');
+            request()->session()->flash('error', 'Anda sudah subscribe');
             return back();
         }
     }

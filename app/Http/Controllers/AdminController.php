@@ -96,13 +96,12 @@ class AdminController extends Controller
 
         User::find(auth()->user()->id)->update(['password' => Hash::make($request->new_password)]);
 
-        return redirect()->route('admin')->with('success', 'Password successfully changed');
+        return redirect()->route('admin')->with('success', 'Berhasil mengubah password');
     }
 
     // Pie chart
     public function userPieChart(Request $request)
     {
-        // dd($request->all());
         $data = User::select(\DB::raw("COUNT(*) as count"), \DB::raw("DAYNAME(created_at) as day_name"), \DB::raw("DAY(created_at) as day"))
             ->where('created_at', '>', Carbon::today()->subDay(6))
             ->groupBy('day_name', 'day')
@@ -132,7 +131,7 @@ class AdminController extends Controller
             //Regenerate the storage link folder
             try {
                 Artisan::call('storage:link');
-                request()->session()->flash('success', 'Successfully storage linked.');
+                request()->session()->flash('success', 'Berhasil menghubungkan storage.');
                 return redirect()->back();
             } catch (\Exception $exception) {
                 request()->session()->flash('error', $exception->getMessage());
@@ -141,7 +140,7 @@ class AdminController extends Controller
         } else {
             try {
                 Artisan::call('storage:link');
-                request()->session()->flash('success', 'Successfully storage linked.');
+                request()->session()->flash('success', 'Berhasil menghubungkan storage.');
                 return redirect()->back();
             } catch (\Exception $exception) {
                 request()->session()->flash('error', $exception->getMessage());

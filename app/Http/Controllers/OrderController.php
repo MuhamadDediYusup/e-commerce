@@ -57,7 +57,7 @@ class OrderController extends Controller
         ]);
 
         if (empty(Cart::where('user_id', auth()->user()->id)->where('order_id', null)->first())) {
-            request()->session()->flash('error', 'Cart is Empty!');
+            request()->session()->flash('error', 'Keranjang kosong!');
             return back();
         }
 
@@ -90,7 +90,7 @@ class OrderController extends Controller
         // Kirim notifikasi admin
         $admin = User::where('role', 'admin')->first();
         $details = [
-            'title' => 'New order created',
+            'title' => 'Pesanan baru telah dibuat',
             'actionURL' => route('order.show', $order->id),
             'fas' => 'fa-file-alt',
         ];
@@ -172,7 +172,7 @@ class OrderController extends Controller
         $order = Order::findOrFail($id);
 
         if ($order->payment_status == 'paid') {
-            return redirect()->back()->with('success', 'Payment already completed.');
+            return redirect()->back()->with('success', 'Pembayaran sudah selesai.');
         }
 
         // Proses ulang pembayaran, contoh dengan Midtrans
@@ -236,9 +236,9 @@ class OrderController extends Controller
         }
         $status = $order->fill($data)->save();
         if ($status) {
-            request()->session()->flash('success', 'Successfully updated order');
+            request()->session()->flash('success', 'Pesanan berhasil diperbarui');
         } else {
-            request()->session()->flash('error', 'Error while updating order');
+            request()->session()->flash('error', 'Error ketika memperbarui pesanan');
         }
         return redirect()->route('order.index');
     }
@@ -255,13 +255,13 @@ class OrderController extends Controller
         if ($order) {
             $status = $order->delete();
             if ($status) {
-                request()->session()->flash('success', 'Order Successfully deleted');
+                request()->session()->flash('success', 'Pesanan berhasil dihapus');
             } else {
-                request()->session()->flash('error', 'Order can not deleted');
+                request()->session()->flash('error', 'Pesanan tidak dapat dihapus');
             }
             return redirect()->route('order.index');
         } else {
-            request()->session()->flash('error', 'Order can not found');
+            request()->session()->flash('error', 'Pesanan tidak ditemukan');
             return redirect()->back();
         }
     }
@@ -290,20 +290,21 @@ class OrderController extends Controller
         $order = Order::where('user_id', auth()->user()->id)->where('order_number', $request->order_number)->first();
         if ($order) {
             if ($order->status == "new") {
-                request()->session()->flash('success', 'Your order has been placed. please wait.');
+                // request()->session()->flash('success', 'Your order has been placed. please wait.');
+                request()->session()->flash('success', 'Pesanan Anda telah ditempatkan. Harap tunggu.');
                 return redirect()->route('home');
             } elseif ($order->status == "process") {
-                request()->session()->flash('success', 'Your order is under processing please wait.');
+                request()->session()->flash('success', 'Pesanan Anda sedang diproses. Harap tunggu.');
                 return redirect()->route('home');
             } elseif ($order->status == "delivered") {
-                request()->session()->flash('success', 'Your order is successfully delivered.');
+                request()->session()->flash('success', 'Pesanan Anda berhasil dikirim.');
                 return redirect()->route('home');
             } else {
-                request()->session()->flash('error', 'Your order canceled. please try again');
+                request()->session()->flash('error', 'Pesanan Anda dibatalkan. Silakan coba lagi');
                 return redirect()->route('home');
             }
         } else {
-            request()->session()->flash('error', 'Invalid order numer please try again');
+            request()->session()->flash('error', 'Nomor pesanan tidak valid, silakan coba lagi');
             return back();
         }
     }

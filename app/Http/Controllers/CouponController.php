@@ -129,7 +129,7 @@ class CouponController extends Controller
             return redirect()->route('coupon.index');
         }
         else{
-            request()->session()->flash('error','Coupon not found');
+            request()->session()->flash('error','Kupon tidak ditemukan');
             return redirect()->back();
         }
     }
@@ -139,7 +139,7 @@ class CouponController extends Controller
         $coupon=Coupon::where('code',$request->code)->first();
         // dd($coupon);
         if(!$coupon){
-            request()->session()->flash('error','Invalid coupon code, Please try again');
+            request()->session()->flash('error','Kode kupon tidak valid, Silahkan coba lagi');
             return back();
         }
         if($coupon){
@@ -150,7 +150,7 @@ class CouponController extends Controller
                 'code'=>$coupon->code,
                 'value'=>$coupon->discount($total_price)
             ]);
-            request()->session()->flash('success','Coupon successfully applied');
+            request()->session()->flash('success','Kupon berhasil digunakan');
             return redirect()->back();
         }
     }
