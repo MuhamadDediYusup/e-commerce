@@ -338,7 +338,8 @@ class OrderController extends Controller
         }
         $data = [];
         for ($i = 1; $i <= 12; $i++) {
-            $monthName = date('F', mktime(0, 0, 0, $i, 1));
+            // $monthName = date('F', mktime(0, 0, 0, $i, 1));
+            $monthName = \Carbon\Carbon::create()->month($i)->translatedFormat('F');
             $data[$monthName] = (!empty($result[$i])) ? number_format((float)($result[$i]), 2, '.', '') : 0.0;
         }
         return $data;

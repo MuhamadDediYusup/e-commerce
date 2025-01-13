@@ -11,7 +11,7 @@
                 <div class="bread-inner">
                     <ul class="bread-list">
                         <li><a href="index1.html">Beranda<i class="ti-arrow-right"></i></a></li>
-                        <li class="active"><a href="blog-single.html">Shop Grid</a></li>
+                        <li class="active"><a href="blog-single.html">Produk</a></li>
                     </ul>
                 </div>
             </div>
@@ -118,7 +118,7 @@
                             <div class="shop-top">
                                 <div class="shop-shorter">
                                     <div class="single-shorter">
-                                        <label>Show :</label>
+                                        <label>Tampilkan :</label>
                                         <select class="show" name="show" onchange="this.form.submit();">
                                             <option value="">Default</option>
                                             <option value="9" @if(!empty($_GET['show']) && $_GET['show']=='9' ) selected
@@ -132,17 +132,17 @@
                                         </select>
                                     </div>
                                     <div class="single-shorter">
-                                        <label>Sort By :</label>
+                                        <label>Urutkan :</label>
                                         <select class='sortBy' name='sortBy' onchange="this.form.submit();">
                                             <option value="">Default</option>
                                             <option value="title" @if(!empty($_GET['sortBy']) &&
-                                                $_GET['sortBy']=='title' ) selected @endif>Name</option>
+                                                $_GET['sortBy']=='title' ) selected @endif>Nama</option>
                                             <option value="price" @if(!empty($_GET['sortBy']) &&
-                                                $_GET['sortBy']=='price' ) selected @endif>Price</option>
+                                                $_GET['sortBy']=='price' ) selected @endif>Harga</option>
                                             <option value="category" @if(!empty($_GET['sortBy']) &&
-                                                $_GET['sortBy']=='category' ) selected @endif>Category</option>
-                                            <option value="brand" @if(!empty($_GET['sortBy']) &&
-                                                $_GET['sortBy']=='brand' ) selected @endif>Brand</option>
+                                                $_GET['sortBy']=='category' ) selected @endif>Kategori</option>
+                                            {{-- <option value="brand" @if(!empty($_GET['sortBy']) &&
+                                                $_GET['sortBy']=='brand' ) selected @endif>Brand</option> --}}
                                         </select>
                                     </div>
                                 </div>
@@ -169,7 +169,7 @@
                                         <img class="default-img" src="{{$photo[0]}}" alt="{{$photo[0]}}">
                                         <img class="hover-img" src="{{$photo[0]}}" alt="{{$photo[0]}}">
                                         @if($product->discount)
-                                        <span class="price-dec">{{$product->discount}} % Off</span>
+                                        <span class="price-dec">Diskon {{$product->discount}} %</span>
                                         @endif
                                     </a>
                                     <div class="button-head">
@@ -178,8 +178,9 @@
                                                 href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
                                         </div>
                                         <div class="product-action-2">
-                                            <a title="Add to cart" href="{{route('add-to-cart',$product->slug)}}">Add to
-                                                cart</a>
+                                            <a title="Add to cart" href="{{route('add-to-cart',$product->slug)}}">
+                                                Tambah ke keranjang
+                                            </a>
                                         </div>
                                     </div>
                                 </div>

@@ -1,9 +1,8 @@
-@extends('frontend.layouts.master')
+{{-- @extends('frontend.layouts.master')
 
-@section('title','Berkah Tani || Login')
+@section('title', 'Berkah Tani || Login')
 
 @section('main-content')
-<!-- Breadcrumbs -->
 <div class="breadcrumbs">
     <div class="container">
         <div class="row">
@@ -18,9 +17,7 @@
         </div>
     </div>
 </div>
-<!-- End Breadcrumbs -->
 
-<!-- Shop Login -->
 <section class="shop login section">
     <div class="container">
         <div class="row">
@@ -28,7 +25,6 @@
                 <div class="login-form">
                     <h2>Masuk</h2>
                     <p>Silakan daftar untuk proses checkout yang lebih cepat</p>
-                    <!-- Formulir -->
                     <form class="form" method="post" action="{{route('login.submit')}}">
                         @csrf
                         <div class="row">
@@ -56,14 +52,6 @@
                                 <div class="form-group login-btn">
                                     <button class="btn" type="submit">Masuk</button>
                                     <a href="{{route('register.form')}}" class="btn">Daftar</a>
-                                    {{-- ATAU
-                                    <a href="{{route('login.redirect','facebook')}}" class="btn btn-facebook"><i
-                                            class="ti-facebook"></i></a>
-                                    <a href="{{route('login.redirect','github')}}" class="btn btn-github"><i
-                                            class="ti-github"></i></a>
-                                    <a href="{{route('login.redirect','google')}}" class="btn btn-google"><i
-                                            class="ti-google"></i></a> --}}
-
                                 </div>
                                 <div class="form-group login-btn mt-2">
                                     <a href="{{route('login')}}" class="btn">Masuk Sebagai Admin</a>
@@ -80,13 +68,11 @@
                             </div>
                         </div>
                     </form>
-                    <!--/ End Formulir -->
                 </div>
             </div>
         </div>
     </div>
 </section>
-<!--/ End Login -->
 @endsection
 @push('styles')
 <style>
@@ -120,4 +106,76 @@
         background: rgb(243, 26, 26) !important;
     }
 </style>
-@endpush
+@endpush --}}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Berkah Tani || Login</title>
+    @include('backend.layouts.head')
+
+</head>
+
+<body class="bg-gradient-success">
+
+    <div class="container">
+
+        <div class="row justify-content-center">
+
+            <div class="col-xl-10 col-lg-12 col-md-9 mt-5">
+
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="p-5">
+                                    <img src="{{ asset('backend/img/logo3.png') }}" alt="login"
+                                        class="img-fluid mx-auto d-block" style="width: 200px;">
+                                    <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-4">Selamat Datang Kembali!</h1>
+                                    </div>
+                                    <form class="user" method="POST" action="{{ route('login.submit') }}">
+                                        @csrf
+                                        <div class="form-group">
+                                            <input type="email"
+                                                class="form-control form-control-user @error('email') is-invalid @enderror"
+                                                name="email" value="{{ old('email') }}" id="exampleInputEmail"
+                                                aria-describedby="emailHelp" placeholder="Masukkan Email..." required
+                                                autocomplete="email" autofocus>
+                                            @error('email')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password"
+                                                class="form-control form-control-user @error('password') is-invalid @enderror"
+                                                id="exampleInputPassword" placeholder="Masukkan Kata Sandi..."
+                                                name="password" required autocomplete="current-password">
+                                            @error('password')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+
+                                        </div>
+                                        <button type="submit" class="btn btn-user btn-block btn-success">
+                                            Login
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</body>
+
+</html>

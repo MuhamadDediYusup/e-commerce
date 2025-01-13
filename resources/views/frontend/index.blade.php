@@ -87,7 +87,7 @@
                                             height="300px">
                                         @if($product->stock<=0) <span class="out-of-stock">Sale out</span>
                                             @else
-                                            <span class="price-dec">{{$product->discount}}% Off</span>
+                                            <span class="price-dec">Diskon {{$product->discount}}%</span>
                                             @endif
                                     </a>
                                     <div class="button-head">
@@ -162,7 +162,7 @@
                                         @endphp
                                         <span>Rp{{number_format($after_discount,2)}}</span>
                                         <del style="padding-left:4%;">Rp{{number_format($product->price,2)}}</del>
-                                        <p class="price with-discount">{{number_format($product->discount)}}% OFF</p>
+                                        <p class="price with-discount">Diskon {{number_format($product->discount)}}%</p>
                                     </div>
                                 </div>
                             </div>

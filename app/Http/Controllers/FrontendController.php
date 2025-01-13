@@ -353,9 +353,17 @@ class FrontendController extends Controller
     {
         $data = $request->all();
         if (Auth::attempt(['email' => $data['email'], 'password' => $data['password'], 'status' => 'active'])) {
-            Session::put('user', $data['email']);
-            request()->session()->flash('success', 'Login berhasil');
-            return redirect()->route('home');
+            // Session::put('user', $data['email']);
+            // request()->session()->flash('success', 'Login berhasil');
+            // return redirect()->route('home');
+
+            if (Auth::user()->role == 'admin') {
+                return redirect()->route('admin')->with('success', 'Login berhasil');
+            } else {
+                request()->session()->flash('success', 'Login berhasil');
+                return redirect()->route('home');
+            }
+
         } else {
             request()->session()->flash('error', 'Email atau password salah, silahkan coba lagi!');
             return redirect()->back();

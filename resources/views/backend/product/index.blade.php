@@ -56,7 +56,7 @@
                         </td>
                         <td>{{ $product->is_featured == 1 ? 'Yes' : 'No' }}</td>
                         <td>Rp. {{ number_format($product->price, 2) }}</td>
-                        <td> {{ $product->discount }}% OFF</td>
+                        <td> Diskon {{ $product->discount }}%</td>
                         <td>
                             @if ($product->stock > 0)
                             <span class="badge badge-primary">{{ $product->stock }}</span>

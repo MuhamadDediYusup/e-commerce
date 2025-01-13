@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 
-@section('title','Berkah Tani | About Us')
+@section('title','Berkah Tani | Tentang Kami')
 
 @section('main-content')
 
