@@ -36,8 +36,8 @@
     </li>
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-            aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
+            aria-controls="collapseTwo">
             <i class="fas fa-image"></i>
             <span>Banner</span>
         </a>
@@ -122,6 +122,17 @@
         <a class="nav-link" href="{{ route('coupon.index') }}">
             <i class="fas fa-table"></i>
             <span>Kupon</span></a>
+    </li>
+
+    <hr class="sidebar-divider d-none d-md-block">
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Laporan
+    </div>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('products.report') }}">
+            <i class="fas fa-users"></i>
+            <span>Laporan Penjualan</span></a>
     </li>
 
     <!-- Divider -->

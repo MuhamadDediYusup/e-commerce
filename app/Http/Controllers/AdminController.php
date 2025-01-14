@@ -10,6 +10,7 @@ use Hash;
 use Carbon\Carbon;
 use Spatie\Activitylog\Models\Activity;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 
 class AdminController extends Controller
@@ -147,5 +148,23 @@ class AdminController extends Controller
                 return redirect()->back();
             }
         }
+    }
+
+    public function cartReport()
+    {
+        $report = DB::table('carts')
+            ->join('products', 'carts.product_id', '=', 'products.id')
+            ->select(
+                'products.title as product_title',
+                'products.slug as product_slug',
+                DB::raw('SUM(carts.quantity) as total_quantity'),
+                DB::raw('SUM(carts.amount) as total_amount'),
+                DB::raw('COUNT(carts.id) as total_orders')
+            )
+            ->groupBy('carts.product_id', 'products.title', 'products.slug')
+            ->orderBy('total_quantity', 'desc')
+            ->paginate(50);
+
+        return view('backend.report.product', compact('report'));
     }
 }
