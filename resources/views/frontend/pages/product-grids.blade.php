@@ -121,18 +121,30 @@
                                         <label>Tampilkan :</label>
                                         <select class="show" name="show" onchange="this.form.submit();">
                                             <option value="">Default</option>
+                                            <option value="1" @if(!empty($_GET['show']) && $_GET['show']=='1' ) selected
+                                                @endif>01</option>
+                                            <option value="2" @if(!empty($_GET['show']) && $_GET['show']=='2' ) selected
+                                                @endif>02</option>
+                                            <option value="3" @if(!empty($_GET['show']) && $_GET['show']=='3' ) selected
+                                                @endif>03</option>
+                                            <option value="4" @if(!empty($_GET['show']) && $_GET['show']=='4' ) selected
+                                                @endif>04</option>
+                                            <option value="5" @if(!empty($_GET['show']) && $_GET['show']=='5' ) selected
+                                                @endif>05</option>
+                                            <option value="6" @if(!empty($_GET['show']) && $_GET['show']=='6' ) selected
+                                                @endif>06</option>
+                                            <option value="7" @if(!empty($_GET['show']) && $_GET['show']=='7' ) selected
+                                                @endif>07</option>
+                                            <option value="8" @if(!empty($_GET['show']) && $_GET['show']=='8' ) selected
+                                                @endif>08</option>
                                             <option value="9" @if(!empty($_GET['show']) && $_GET['show']=='9' ) selected
                                                 @endif>09</option>
-                                            <option value="15" @if(!empty($_GET['show']) && $_GET['show']=='15' )
-                                                selected @endif>15</option>
-                                            <option value="21" @if(!empty($_GET['show']) && $_GET['show']=='21' )
-                                                selected @endif>21</option>
-                                            <option value="30" @if(!empty($_GET['show']) && $_GET['show']=='30' )
-                                                selected @endif>30</option>
+                                            <option value="10" @if(!empty($_GET['show']) && $_GET['show']=='10' )
+                                                selected @endif>10</option>
                                         </select>
                                     </div>
                                     <div class="single-shorter">
-                                        <label>Urutkan :</label>
+                                        <label>Urutkan Berdasarkan:</label>
                                         <select class='sortBy' name='sortBy' onchange="this.form.submit();">
                                             <option value="">Default</option>
                                             <option value="title" @if(!empty($_GET['sortBy']) &&
@@ -201,16 +213,12 @@
                         @else
                         <h4 class="text-warning" style="margin:100px auto;">Tidak ada produk.</h4>
                         @endif
-
-
-
                     </div>
                     <div class="row">
                         <div class="col-md-12 justify-content-center d-flex">
-                            {{$products->appends($_GET)->links()}}
+                            {{$products->links()}}
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -285,8 +293,8 @@
                             @endphp
                             {{-- <h3><small><del class="text-muted">${{number_format($product->price,2)}}</del></small>
                                 ${{number_format($after_discount,2)}} </h3> --}}
-                                <h3><small><del class="text-muted">Rp{{number_format($product->price,2)}}</del></small>
-                                    Rp{{number_format($after_discount,2)}} </h3>
+                            <h3><small><del class="text-muted">Rp{{number_format($product->price,2)}}</del></small>
+                                Rp{{number_format($after_discount,2)}} </h3>
                             <div class="quickview-peragraph">
                                 <p>{!! html_entity_decode($product->summary) !!}</p>
                             </div>
