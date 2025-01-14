@@ -62,7 +62,8 @@
                                             </button>
                                         </div>
                                         <input type="text" name="quant[{{$key}}]" class="input-number" data-min="1"
-                                            data-max="100" value="{{$cart->quantity}}">
+       data-max="{{ $cart->product->stock }}" value="{{ $cart->quantity }}" id="quantityInput">
+
                                         <input type="hidden" name="qty_id[]" value="{{$cart->id}}">
                                         <div class="button plus">
                                             <button type="button" class="btn btn-primary btn-number" data-type="plus"
@@ -205,6 +206,22 @@
 </section>
 <!-- End Shop Services Area -->
 
+<script>
+  document.getElementById('quantityInput').addEventListener('change', function () {
+    const maxStock = parseInt(this.dataset.max);
+    const value = parseInt(this.value);
+
+    if (value > maxStock) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Jumlah melebihi stok yang tersedia!',
+      });
+      this.value = maxStock;
+    }
+  });
+</script>
+
 @endsection
 @push('styles')
 <style>
@@ -274,7 +291,5 @@
 			});
 
 		});
-
 </script>
-
 @endpush
