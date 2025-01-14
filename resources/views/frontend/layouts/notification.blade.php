@@ -1,14 +1,29 @@
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 @if(session('success'))
-    <div class="alert alert-success alert-dismissable fade show text-center">
-        <button class="close" data-dismiss="alert" aria-label="Close">×</button>
-        {{session('success')}}
-    </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        Swal.fire({
+            icon: 'success',
+            title: 'Success',
+            text: '{{ e(session('success')) }}', // Pastikan isi session aman
+            showConfirmButton: true,
+            confirmButtonText: 'OK'
+        });
+    });
+</script>
 @endif
 
-
 @if(session('error'))
-    <div class="alert alert-danger alert-dismissable fade show text-center">
-        <button class="close" data-dismiss="alert" aria-label="Close">×</button>
-        {{session('error')}}
-    </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: '{{ e(session('error')) }}', // Pastikan isi session aman
+            showConfirmButton: true,
+            confirmButtonText: 'OK'
+        });
+    });
+</script>
 @endif
