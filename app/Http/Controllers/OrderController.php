@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Cart;
+use App\Models\CheckoutInformation;
 use App\Models\Order;
 use App\Models\Shipping;
 use App\User;
@@ -59,6 +60,33 @@ class OrderController extends Controller
         if (empty(Cart::where('user_id', auth()->user()->id)->where('order_id', null)->first())) {
             request()->session()->flash('error', 'Keranjang kosong!');
             return back();
+        }
+
+        $checkoutInfo = CheckoutInformation::where('user_id', auth()->user()->id)->first();
+
+        if ($checkoutInfo) {
+            $checkoutInfo->user_id = auth()->user()->id;
+            $checkoutInfo->first_name = $request->first_name;
+            $checkoutInfo->last_name = $request->last_name;
+            $checkoutInfo->email = $request->email;
+            $checkoutInfo->phone_number = $request->phone;
+            $checkoutInfo->country = $request->country;
+            $checkoutInfo->address_line1 = $request->address1;
+            $checkoutInfo->address_line2 = $request->address2;
+            $checkoutInfo->postal_code = $request->post_code;
+            $checkoutInfo->save();
+        } else {
+            $checkoutInfo = new CheckoutInformation();
+            $checkoutInfo->user_id = auth()->user()->id;
+            $checkoutInfo->first_name = $request->first_name;
+            $checkoutInfo->last_name = $request->last_name;
+            $checkoutInfo->email = $request->email;
+            $checkoutInfo->phone_number = $request->phone;
+            $checkoutInfo->country = $request->country;
+            $checkoutInfo->address_line1 = $request->address1;
+            $checkoutInfo->address_line2 = $request->address2;
+            $checkoutInfo->postal_code = $request->post_code;
+            $checkoutInfo->save();
         }
 
         $order = new Order();

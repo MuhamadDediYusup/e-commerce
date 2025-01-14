@@ -6,6 +6,7 @@ use Auth;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Cart;
+use App\Models\CheckoutInformation;
 use Illuminate\Support\Str;
 use Helper;
 
@@ -259,6 +260,9 @@ class CartController extends Controller
         //     $cart->fill($data);
         //     $cart->save();
         // }
-        return view('frontend.pages.checkout');
+
+        $checkoutInfo = CheckoutInformation::where('user_id', auth()->user()->id)->first();
+
+        return view('frontend.pages.checkout', compact('checkoutInfo'));
     }
 }

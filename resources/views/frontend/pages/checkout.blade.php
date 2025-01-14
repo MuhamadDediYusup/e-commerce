@@ -36,8 +36,8 @@
                             <div class="col-lg-6 col-md-6 col-12">
                                 <div class="form-group">
                                     <label>Nama Depan<span>*</span></label>
-                                    <input type="text" name="first_name" placeholder="" value="{{old('first_name')}}"
-                                        value="{{old('first_name')}}">
+                                    <input type="text" name="first_name" placeholder=""
+                                        value="{{old('first_name', $checkoutInfo->first_name)}}">
                                     @error('first_name')
                                     <span class='text-danger'>{{$message}}</span>
                                     @enderror
@@ -46,7 +46,8 @@
                             <div class="col-lg-6 col-md-6 col-12">
                                 <div class="form-group">
                                     <label>Nama Belakang<span>*</span></label>
-                                    <input type="text" name="last_name" placeholder="" value="{{old('lat_name')}}">
+                                    <input type="text" name="last_name" placeholder=""
+                                        value="{{old('lat_name', $checkoutInfo->last_name)}}">
                                     @error('last_name')
                                     <span class='text-danger'>{{$message}}</span>
                                     @enderror
@@ -55,7 +56,8 @@
                             <div class="col-lg-6 col-md-6 col-12">
                                 <div class="form-group">
                                     <label>Alamat Email<span>*</span></label>
-                                    <input type="email" name="email" placeholder="" value="{{old('email')}}">
+                                    <input type="email" name="email" placeholder=""
+                                        value="{{old('email', $checkoutInfo->email)}}">
                                     @error('email')
                                     <span class='text-danger'>{{$message}}</span>
                                     @enderror
@@ -64,7 +66,8 @@
                             <div class="col-lg-6 col-md-6 col-12">
                                 <div class="form-group">
                                     <label>Nomor Telepon <span>*</span></label>
-                                    <input type="number" name="phone" placeholder="" required value="{{old('phone')}}">
+                                    <input type="number" name="phone" placeholder="" required
+                                        value="{{old('phone', $checkoutInfo->phone_number)}}">
                                     @error('phone')
                                     <span class='text-danger'>{{$message}}</span>
                                     @enderror
@@ -73,15 +76,17 @@
                             <div class="col-lg-6 col-md-6 col-12">
                                 <div class="form-group">
                                     <label>Negara<span>*</span></label>
-                                    <select name="country" id="country">
-                                        <option value="ID" selected>Indonesia</option>
+                                    <select name="country" id="country" readonly>
+                                        <option value="ID" {{ old('country', $checkoutInfo->country) == 'ID' ?
+                                            'selected' : '' }}>Indonesia</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-12">
                                 <div class="form-group">
                                     <label>Alamat Baris 1<span>*</span></label>
-                                    <input type="text" name="address1" placeholder="" value="{{old('address1')}}">
+                                    <input type="text" name="address1" placeholder=""
+                                        value="{{old('address1', $checkoutInfo->address_line1)}}">
                                     @error('address1')
                                     <span class='text-danger'>{{$message}}</span>
                                     @enderror
@@ -90,7 +95,8 @@
                             <div class="col-lg-6 col-md-6 col-12">
                                 <div class="form-group">
                                     <label>Alamat Baris 2</label>
-                                    <input type="text" name="address2" placeholder="" value="{{old('address2')}}">
+                                    <input type="text" name="address2" placeholder=""
+                                        value="{{old('address2', $checkoutInfo->address_line2)}}">
                                     @error('address2')
                                     <span class='text-danger'>{{$message}}</span>
                                     @enderror
@@ -99,7 +105,8 @@
                             <div class="col-lg-6 col-md-6 col-12">
                                 <div class="form-group">
                                     <label>Kode Pos</label>
-                                    <input type="text" name="post_code" placeholder="" value="{{old('post_code')}}">
+                                    <input type="text" name="post_code" placeholder=""
+                                        value="{{old('post_code', $checkoutInfo->postal_code)}}">
                                     @error('post_code')
                                     <span class='text-danger'>{{$message}}</span>
                                     @enderror
