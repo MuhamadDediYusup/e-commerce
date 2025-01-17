@@ -34,7 +34,7 @@ class CartController extends Controller
 
         // jika user belum login maka akan diarahkan ke login
         if (!Auth::check()) {
-            return redirect()->route('login');
+            return redirect('user/login');
         }
 
         $already_cart = Cart::where('user_id', auth()->user()->id)->where('order_id', null)->where('product_id', $product->id)->first();
@@ -63,6 +63,10 @@ class CartController extends Controller
 
     public function singleAddToCart(Request $request)
     {
+        if (!Auth::check()) {
+            return redirect('user/login');
+        }
+
         $request->validate([
             'slug'      =>  'required',
             'quant'      =>  'required',
