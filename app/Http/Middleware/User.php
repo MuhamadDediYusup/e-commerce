@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Auth;
 
 class User
 {
@@ -15,12 +16,10 @@ class User
      */
     public function handle($request, Closure $next)
     {
-        // if(empty(session('user'))){
-        if(!$request->session()->has('user')){
-            return redirect()->route('login.form');
-        }
-        else{
+        if (Auth::check()) {
             return $next($request);
         }
+
+        return redirect()->route('login.form')->with('error', 'Please login first');
     }
 }

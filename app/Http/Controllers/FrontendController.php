@@ -349,13 +349,11 @@ class FrontendController extends Controller
     {
         return view('frontend.pages.login');
     }
+
     public function loginSubmit(Request $request)
     {
         $data = $request->all();
         if (Auth::attempt(['email' => $data['email'], 'password' => $data['password'], 'status' => 'active'])) {
-            // Session::put('user', $data['email']);
-            // request()->session()->flash('success', 'Login berhasil');
-            // return redirect()->route('home');
 
             if (Auth::user()->role == 'admin') {
                 return redirect()->route('admin')->with('success', 'Login berhasil');
@@ -391,7 +389,7 @@ class FrontendController extends Controller
             'password' => 'required|min:6|confirmed',
         ]);
         $data = $request->all();
-        // dd($data);
+
         $check = $this->create($data);
         Session::put('user', $data['email']);
         if ($check) {

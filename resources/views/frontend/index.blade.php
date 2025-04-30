@@ -47,77 +47,61 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12">
-                <div class="product-info">
-                    <div class="nav-main">
-                        <!-- Tab Nav -->
-                        <ul class="nav nav-tabs filter-tope-group" id="myTab" role="tablist">
-                            @php
-                            $categories=DB::table('categories')->get();
-                            // dd($categories);
-                            @endphp
-                            @if($categories)
-                            <button class="btn" style="background:#354458" data-filter="*">
-                                Semua produk
-                            </button>
-                            @foreach($categories as $key=>$cat)
-                            <button class="btn" style="background:none;color:#354458;" data-filter=".{{$cat->id}}">
-                                {{$cat->title}}
-                            </button>
-                            @endforeach
-                            @endif
-                        </ul>
-                        <!--/ End Tab Nav -->
-                    </div>
+        <div class="row mb-4">
+            <div class="col-12 text-center">
+                @php $categories = DB::table('categories')->get(); @endphp
+                @if($categories)
+                    <button class="btn btn-filter active" data-filter="*">Semua Produk</button>
+                    @foreach($categories as $cat)
+                        <button class="btn btn-filter" data-filter=".{{$cat->id}}">{{$cat->title}}</button>
+                    @endforeach
+                @endif
+            </div>
+        </div>
 
-                    <div class="tab-content isotope-grid" id="myTabContent">
-                        @if($product_lists)
-                        @foreach($product_lists as $key=>$product)
-                        <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item {{$product->category_id}}">
-                            <div class="single-product">
-                                <div class="product-img">
-                                    <a href="{{route('product-detail',$product->slug)}}">
-                                        @php
-                                        $photo=explode(',',$product->photo);
-                                        @endphp
-                                        <img class="default-img" src="{{$photo[0]}}" alt="{{$photo[0]}}" width="100%"
-                                            height="300px">
-                                        <img class="hover-img" src="{{$photo[0]}}" alt="{{$photo[0]}}" width="100%"
-                                            height="300px">
-                                        @if($product->stock<=0) <span class="out-of-stock">Sale out</span>
-                                            @else
-                                            <span class="price-dec">Diskon {{$product->discount}}%</span>
-                                            @endif
+        <div class="row isotope-grid">
+            @foreach($product_lists as $product)
+                <div class="col-sm-6 col-md-4 col-lg-3 mb-4 isotope-item {{$product->category_id}}">
+                    <div class="card h-100 shadow-sm border-0">
+                        <a href="{{route('product-detail', $product->slug)}}">
+                            @php $photo = explode(',', $product->photo); @endphp
+                            <img src="{{$photo[0]}}" class="card-img-top" alt="{{$product->title}}" style="height: 250px; object-fit: cover;">
+                        </a>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">
+                                <a href="{{route('product-detail', $product->slug)}}" class="text-dark text-decoration-none">
+                                    {{$product->title}}
+                                </a>
+                            </h5>
+                            <div class="mt-auto">
+                                @php
+                                    $after_discount = $product->price - ($product->price * $product->discount / 100);
+                                @endphp
+                                <p class="mb-1">
+                                    <strong class="text-primary">Rp{{number_format($after_discount,2)}}</strong>
+                                    @if($product->discount > 0)
+                                        <del class="text-muted ms-2">Rp{{number_format($product->price,2)}}</del>
+                                    @endif
+                                </p>
+                                @if($product->stock <= 0)
+                                    <span class="badge bg-danger">Stok Habis</span>
+                                @else
+                                    <span class="badge bg-success">Diskon {{$product->discount}}%</span>
+                                @endif
+                                <div class="mt-3">
+                                    <a href="{{route('add-to-cart',$product->slug)}}" class="btn btn-sm btn-outline-primary w-100 text-white">
+                                        Tambah ke Keranjang
                                     </a>
-                                    <div class="button-head">
-                                        <div class="product-action-2">
-                                            <a title="Add to cart" href="{{route('add-to-cart',$product->slug)}}">Tambah
-                                                ke Keranjang</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product-content">
-                                    <h3><a href="{{route('product-detail',$product->slug)}}">{{$product->title}}</a>
-                                    </h3>
-                                    <div class="product-price">
-                                        @php
-                                        $after_discount=($product->price-($product->price*$product->discount)/100);
-                                        @endphp
-                                        <span>Rp{{number_format($after_discount,2)}}</span>
-                                        <del style="padding-left:4%;">Rp{{number_format($product->price,2)}}</del>
-                                    </div>
                                 </div>
                             </div>
                         </div>
-                        @endforeach
-                        @endif
                     </div>
                 </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </div>
+
 <!-- End Product Area -->
 
 <!-- Start Shop Home List  -->
@@ -137,40 +121,37 @@
                     $product_lists=DB::table('products')->where('status','active')->orderBy('id','DESC')->limit(6)->get();
                     @endphp
                     @foreach($product_lists as $product)
-                    <div class="col-md-4">
-                        <!-- Start Single List  -->
-                        <div class="single-list">
-                            <div class="row">
+                    <div class="col-md-4 d-flex">
+                        <div class="single-list w-100">
+                            <div class="row g-0">
                                 <div class="col-lg-6 col-12">
                                     <div class="list-image overlay">
                                         @php
                                         $photo=explode(',',$product->photo);
                                         @endphp
-                                        <img src="{{asset($photo[0])}}" width="100%" height="300px"
-                                            alt="{{asset($photo[0])}}">
-                                        <a href="{{route('add-to-cart',$product->slug)}}" class="buy"><i
-                                                class="fa fa-shopping-bag"></i></a>
+                                        <img src="{{asset($photo[0])}}" alt="{{$product->title}}">
+                                        <a href="{{route('add-to-cart',$product->slug)}}" class="buy">
+                                            <i class="fa fa-shopping-bag"></i>
+                                        </a>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-12 ">
+                                <div class="col-lg-6 col-md-6 col-12">
                                     <div class="content">
-                                        <h4 class="title"><a
-                                                href="{{route('product-detail',$product->slug)}}">{{$product->title}}</a>
+                                        <h4 class="title">
+                                            <a href="{{route('product-detail',$product->slug)}}">{{$product->title}}</a>
                                         </h4>
                                         @php
                                         $after_discount=($product->price-($product->price*$product->discount)/100);
                                         @endphp
                                         <span>Rp{{number_format($after_discount,2)}}</span>
-                                        <del style="padding-left:4%;">Rp{{number_format($product->price,2)}}</del>
+                                        <del>Rp{{number_format($product->price,2)}}</del>
                                         <p class="price with-discount">Diskon {{number_format($product->discount)}}%</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- End Single List  -->
                     </div>
                     @endforeach
-
                 </div>
             </div>
         </div>
@@ -213,8 +194,6 @@
     </div>
 </section>
 <!-- End Shop Services Area -->
-
-{{-- @include('frontend.layouts.newsletter') --}}
 
 <!-- Modal -->
 @if($product_lists)
@@ -364,47 +343,87 @@
         background-color: #354458;
         color: white;
     }
+
+    .btn-filter {
+        margin: 0 5px;
+        background: #f1f1f1;
+        border: none;
+        color: #354458;
+        padding: 8px 16px;
+        border-radius: 20px;
+        transition: 0.3s ease;
+    }
+
+    .btn-filter:hover,
+    .btn-filter.active {
+        background-color: #354458;
+        color: white;
+    }
+
+    .card-title {
+        font-size: 1rem;
+        /* height: 48px; */
+        overflow: hidden;
+    }
+
+    .card-img-top {
+        transition: transform 0.3s ease;
+    }
+
+    .card:hover .card-img-top {
+        transform: scale(1.05);
+    }
+
+    .single-list {
+        background: #fff;
+        border: 1px solid #ddd;
+        margin-bottom: 30px;
+        border-radius: 8px;
+        overflow: hidden;
+        transition: all 0.3s ease-in-out;
+        height: 100%;
+    }
+
+    .single-list .list-image img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px;
+    }
+
+    .single-list .content {
+        padding: 20px 15px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+    }
+
+    .single-list .content .title {
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+
+    .single-list .content span,
+    .single-list .content del,
+    .single-list .content p {
+        font-size: 14px;
+        margin: 2px 0;
+    }
+
+    .shop-home-list .row > .col-md-4 {
+        display: flex;
+    }
+
 </style>
 @endpush
 
 @push('scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
-<script>
-    /*==================================================================
-        [ Isotope ]*/
-        $(document).ready(function() {
-    var $topeContainer = $('.isotope-grid');
-    var $filter = $('.filter-tope-group');
+<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
 
-    // Inisialisasi Isotope
-    var $grid = $topeContainer.isotope({
-        itemSelector: '.isotope-item',
-        layoutMode: 'fitRows',
-        percentPosition: true,
-        animationEngine : 'best-available',
-        masonry: {
-            columnWidth: '.isotope-item'
-        }
-    });
-
-    // Filter item saat tombol diklik
-    $filter.on('click', 'button', function() {
-        var filterValue = $(this).attr('data-filter');
-        console.log("Filtering with value: ", filterValue);  // Debugging log
-        $grid.isotope({ filter: filterValue });
-    });
-
-    var isotopeButton = $('.filter-tope-group button');
-
-    $(isotopeButton).each(function() {
-        $(this).on('click', function() {
-            isotopeButton.removeClass('how-active1');
-            $(this).addClass('how-active1');
-            console.log("Button clicked: ", $(this).text());  // Debugging log
-        });
-    });
-});
-</script>
 <script>
     function cancelFullScreen(el) {
             var requestMethod = el.cancelFullScreen||el.webkitCancelFullScreen||el.mozCancelFullScreen||el.exitFullscreen;
@@ -432,6 +451,28 @@
             }
             return false
         }
+
+        document.addEventListener('DOMContentLoaded', function () {
+        // Init Isotope
+        var grid = document.querySelector('.isotope-grid');
+        var iso = new Isotope(grid, {
+            itemSelector: '.isotope-item',
+            layoutMode: 'fitRows'
+        });
+
+        // Filter items on button click
+        var filterButtons = document.querySelectorAll('.btn-filter');
+        filterButtons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                var filterValue = this.getAttribute('data-filter');
+                iso.arrange({ filter: filterValue });
+
+                // Toggle active class
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    });
 </script>
 
 @endpush

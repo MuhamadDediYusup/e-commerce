@@ -20,14 +20,11 @@ class CartController extends Controller
 
     public function addToCart(Request $request)
     {
-        // dd(Auth::check());
-        // dd($request->all());
         if (empty($request->slug)) {
             request()->session()->flash('error', 'Invalid Products');
             return back();
         }
         $product = Product::where('slug', $request->slug)->first();
-        // return $product;
         if (empty($product)) {
             request()->session()->flash('error', 'Invalid Products');
             return back();
@@ -41,7 +38,6 @@ class CartController extends Controller
         $already_cart = Cart::where('user_id', auth()->user()->id)->where('order_id', null)->where('product_id', $product->id)->first();
         // return $already_cart;
         if ($already_cart) {
-            // dd($already_cart);
             $already_cart->quantity = $already_cart->quantity + 1;
             $already_cart->amount = $product->price + $already_cart->amount;
             // return $already_cart->quantity;
@@ -72,7 +68,6 @@ class CartController extends Controller
             'slug'      =>  'required',
             'quant'      =>  'required',
         ]);
-        // dd($request->quant[1]);
 
 
         $product = Product::where('slug', $request->slug)->first();
@@ -85,8 +80,6 @@ class CartController extends Controller
         }
 
         $already_cart = Cart::where('user_id', auth()->user()->id)->where('order_id', null)->where('product_id', $product->id)->first();
-
-        // return $already_cart;
 
         if ($already_cart) {
             $already_cart->quantity = $already_cart->quantity + $request->quant[1];
@@ -105,7 +98,6 @@ class CartController extends Controller
             $cart->quantity = $request->quant[1];
             $cart->amount = ($product->price * $request->quant[1]);
             if ($cart->product->stock < $cart->quantity || $cart->product->stock <= 0) return back()->with('error', 'Stok tidak mencukupi!.');
-            // return $cart;
             $cart->save();
         }
         request()->session()->flash('success', 'Produk berhasil ditambahkan ke keranjang');
@@ -126,7 +118,6 @@ class CartController extends Controller
 
     public function cartUpdate(Request $request)
     {
-        // dd($request->all());
         if ($request->quant) {
             $error = array();
             $success = '';
