@@ -16,10 +16,10 @@ class User
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::check()) {
-            return $next($request);
+        if (!Auth::check()) {
+            return redirect()->route('login.form')->with('error', 'Please login first');
         }
 
-        return redirect()->route('login.form')->with('error', 'Please login first');
+        return $next($request);
     }
 }
