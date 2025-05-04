@@ -60,5 +60,54 @@
         margin-top: 0px;
         margin-left: 0px;
     }
+    .list-main {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.profile-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.profile-btn {
+    background: none;
+    border: none;
+    color: #333;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 0;
+}
+
+.profile-dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
+    z-index: 1;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.profile-dropdown-content a {
+    color: #333;
+    padding: 10px 15px;
+    text-decoration: none;
+    display: block;
+}
+
+.profile-dropdown-content a:hover {
+    background-color: #f5f5f5;
+}
+
+.profile-dropdown:hover .profile-dropdown-content {
+    display: block;
+}
 </style>
 @stack('styles')

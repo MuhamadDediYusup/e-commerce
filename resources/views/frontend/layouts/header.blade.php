@@ -18,28 +18,35 @@
                     </div>
                     <!--/ End Top Left -->
                 </div>
+
                 <div class="col-lg-6 col-md-12 col-12">
-                    <!-- Top Right -->
                     <div class="right-content">
                         <ul class="list-main">
-                            <li><i class="ti-archive"></i> <a href="{{route('user.order.index')}}">Daftar Pesanan</a>
-                            </li>
-                            <li><i class="ti-location-pin"></i> <a href="{{route('order.track')}}">Lacak Pesanan</a>
-                            </li>
-                            {{-- <li><i class="ti-alarm-clock"></i> <a href="#">Daily deal</a></li> --}}
-                            @auth
-                            @if(Auth::user()->role=='admin')
-                            <li><i class="ti-user"></i> <a href="{{route('admin')}}" target="_blank">Dashboard</a></li>
-                            @endif
-                            <li><i class="ti-power-off"></i> <a href="{{route('user.logout')}}">Logout</a></li>
+                            <li><i class="ti-archive"></i> <a href="{{ route('user.order.index') }}">Daftar Pesanan</a></li>
+                            <li><i class="ti-location-pin"></i> <a href="{{ route('order.track') }}">Lacak Pesanan</a></li>
 
+                            @auth
+                                @if(Auth::user()->role == 'admin')
+                                    <li><i class="ti-user"></i> <a href="{{ route('admin') }}" target="_blank">Dashboard</a></li>
+                                @endif
+
+                                <li class="profile-dropdown">
+                                    <button class="profile-btn">
+                                        <i class="ti-user"></i> {{ Auth::user()->name }}
+                                    </button>
+                                    <div class="profile-dropdown-content">
+                                        <a href="{{ route('user.logout') }}">
+                                            <i class="ti-power-off"></i> Logout
+                                        </a>
+                                    </div>
+                                </li>
                             @else
-                            <li><i class="ti-power-off"></i><a href="{{route('login.form')}}">Login /</a> <a
-                                    href="{{route('register.form')}}">Register</a></li>
+                                <li><i class="ti-power-off"></i><a href="{{ route('login.form') }}">Login /</a>
+                                    <a href="{{ route('register.form') }}">Register</a>
+                                </li>
                             @endauth
                         </ul>
                     </div>
-                    <!-- End Top Right -->
                 </div>
             </div>
         </div>

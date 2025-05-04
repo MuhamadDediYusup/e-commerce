@@ -105,8 +105,8 @@
                             <div class="col-lg-6 col-md-6 col-12">
                                 <div class="form-group">
                                     <label>Kode Pos</label>
-                                    <input type="text" name="post_code" placeholder=""
-                                        value="{{old('post_code', $checkoutInfo->postal_code ?? '')}}">
+                                    <input type="number" name="post_code" placeholder=""
+                                        value="{{old('post_code', $checkoutInfo->postal_code ?? '')}}" min="0">
                                     @error('post_code')
                                     <span class='text-danger'>{{$message}}</span>
                                     @enderror
