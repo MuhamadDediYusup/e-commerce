@@ -1,5 +1,6 @@
 <!-- Meta Tag -->
 @yield('meta')
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- Title Tag  -->
 <title>@yield('title')</title>
 <!-- Favicon -->
@@ -38,76 +39,9 @@
 <link rel="stylesheet" href="{{ asset('frontend/css/reset.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/css/responsive.css') }}">
+<link rel="stylesheet" href="{{ asset('frontend/css/header.css') }}">
+<link rel="stylesheet" href="{{ asset('frontend/css/footer.css') }}">
 {{-- <script type='text/javascript'
     src='https://platform-api.sharethis.com/js/sharethis.js#property=5f2e5abf393162001291e431&product=inline-share-buttons'
     async='async'></script> --}}
-<style>
-    /* Multilevel dropdown */
-    .dropdown-submenu {
-        position: relative;
-    }
-
-    .dropdown-submenu>a:after {
-        content: "\f0da";
-        float: right;
-        border: none;
-        font-family: 'FontAwesome';
-    }
-
-    .dropdown-submenu>.dropdown-menu {
-        top: 0;
-        left: 100%;
-        margin-top: 0px;
-        margin-left: 0px;
-    }
-    .list-main {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.profile-dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.profile-btn {
-    background: none;
-    border: none;
-    color: #333;
-    font-size: 14px;
-    cursor: pointer;
-    padding: 0;
-}
-
-.profile-dropdown-content {
-    display: none;
-    position: absolute;
-    right: 0;
-    background-color: white;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
-    z-index: 1;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.profile-dropdown-content a {
-    color: #333;
-    padding: 10px 15px;
-    text-decoration: none;
-    display: block;
-}
-
-.profile-dropdown-content a:hover {
-    background-color: #f5f5f5;
-}
-
-.profile-dropdown:hover .profile-dropdown-content {
-    display: block;
-}
-</style>
 @stack('styles')

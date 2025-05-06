@@ -13,7 +13,7 @@
     <div class="carousel-inner" role="listbox">
         @foreach($banners as $key=>$banner)
         <div class="carousel-item {{(($key==0)? 'active' : '')}}">
-            <img class="first-slide" src="{{$banner->photo}}" alt="First slide">
+            <img class="first-slide" src="{{$banner->photo}}" alt="First slide" style="object-fit: cover;">
             <div class="carousel-caption d-none d-md-block text-left">
                 <h1 class="wow fadeInDown">{{$banner->title}}</h1>
                 <p>{!! html_entity_decode($banner->description) !!}</p>
@@ -303,41 +303,6 @@
 
 @push('styles')
 <style>
-    /* Banner Sliding */
-    #Gslider .carousel-inner {
-        background: #000000;
-        color: #354458;
-    }
-
-    #Gslider .carousel-inner {
-        height: 550px;
-    }
-
-    #Gslider .carousel-inner img {
-        width: 100% !important;
-        opacity: .8;
-    }
-
-    #Gslider .carousel-inner .carousel-caption {
-        bottom: 60%;
-    }
-
-    #Gslider .carousel-inner .carousel-caption h1 {
-        font-size: 50px;
-        font-weight: bold;
-        line-height: 100%;
-        color: #F7941D;
-    }
-
-    #Gslider .carousel-inner .carousel-caption p {
-        font-size: 18px;
-        color: #354458;
-        margin: 28px 0 28px 0;
-    }
-
-    #Gslider .carousel-indicators {
-        bottom: 70px;
-    }
 
     .how-active1 {
         background-color: #354458;
@@ -375,47 +340,64 @@
     }
 
     .single-list {
-        background: #fff;
-        border: 1px solid #ddd;
-        margin-bottom: 30px;
-        border-radius: 8px;
-        overflow: hidden;
-        transition: all 0.3s ease-in-out;
-        height: 100%;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    background: #fff;
+    transition: all 0.3s ease-in-out;
+}
+
+.single-list .list-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.single-list .content {
+    padding: 15px;
+}
+
+.single-list .content h4.title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.single-list .content span,
+.single-list .content del,
+.single-list .content .price {
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Responsif untuk layar kecil */
+@media (max-width: 768px) {
+    .single-list .row.g-0 {
+        flex-direction: column;
     }
 
-    .single-list .list-image img {
-        width: 100%;
-        height: 220px;
-        object-fit: cover;
-        border-top-left-radius: 8px;
-        border-bottom-left-radius: 8px;
+    .single-list .col-lg-6,
+    .single-list .col-md-6,
+    .single-list .col-12 {
+        max-width: 100%;
+        flex: 0 0 100%;
     }
 
     .single-list .content {
-        padding: 20px 15px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        height: 100%;
+        text-align: center;
     }
 
-    .single-list .content .title {
-        font-size: 16px;
-        font-weight: 600;
-        margin-bottom: 10px;
+    .single-list .list-image {
+        text-align: center;
+        padding: 10px;
     }
 
-    .single-list .content span,
-    .single-list .content del,
-    .single-list .content p {
-        font-size: 14px;
-        margin: 2px 0;
+    .single-list .list-image img {
+        max-height: 200px;
     }
+}
 
-    .shop-home-list .row > .col-md-4 {
-        display: flex;
-    }
 
 </style>
 @endpush

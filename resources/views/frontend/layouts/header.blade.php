@@ -1,51 +1,52 @@
 <header class="header shop">
     <!-- Topbar -->
+
     <div class="topbar">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 col-md-12 col-12">
-                    <!-- Top Left -->
-                    <div class="top-left">
-                        <ul class="list-main">
-                            @php
-                            $settings=DB::table('settings')->get();
+                <div class="col-12">
+                    <!-- Flex container -->
+                    <div class="d-flex flex-wrap justify-content-between align-items-center">
+                        <div class="top-left">
+                            <ul class="list-main">
+                                @php
+                                $settings=DB::table('settings')->get();
 
-                            @endphp
-                            <li><i class="ti-headphone-alt"></i>@foreach($settings as $data) {{$data->phone}}
-                                @endforeach</li>
-                            <li><i class="ti-email"></i> @foreach($settings as $data) {{$data->email}} @endforeach</li>
-                        </ul>
-                    </div>
-                    <!--/ End Top Left -->
-                </div>
+                                @endphp
+                                @foreach($settings as $data)
+                                    <li><i class="ti-headphone-alt"></i> {{ $data->phone }}</li>
+                                    <li><i class="ti-email"></i> {{ $data->email }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
 
-                <div class="col-lg-6 col-md-12 col-12">
-                    <div class="right-content">
-                        <ul class="list-main">
-                            <li><i class="ti-archive"></i> <a href="{{ route('user.order.index') }}">Daftar Pesanan</a></li>
-                            <li><i class="ti-location-pin"></i> <a href="{{ route('order.track') }}">Lacak Pesanan</a></li>
-
-                            @auth
-                                @if(Auth::user()->role == 'admin')
-                                    <li><i class="ti-user"></i> <a href="{{ route('admin') }}" target="_blank">Dashboard</a></li>
-                                @endif
-
-                                <li class="profile-dropdown">
-                                    <button class="profile-btn">
-                                        <i class="ti-user"></i> {{ Auth::user()->name }}
-                                    </button>
-                                    <div class="profile-dropdown-content">
-                                        <a href="{{ route('user.logout') }}">
-                                            <i class="ti-power-off"></i> Logout
-                                        </a>
-                                    </div>
-                                </li>
-                            @else
-                                <li><i class="ti-power-off"></i><a href="{{ route('login.form') }}">Login /</a>
-                                    <a href="{{ route('register.form') }}">Register</a>
-                                </li>
-                            @endauth
-                        </ul>
+                        <div class="right-content">
+                            <ul class="list-main">
+                                <li><i class="ti-archive"></i> <a href="{{ route('user.order.index') }}">Daftar Pesanan</a></li>
+                                <li><i class="ti-location-pin"></i> <a href="{{ route('order.track') }}">Lacak Pesanan</a></li>
+                                @auth
+                                    @if(Auth::user()->role == 'admin')
+                                        <li><i class="ti-user"></i> <a href="{{ route('admin') }}" target="_blank">Dashboard</a></li>
+                                    @endif
+                                    <li class="profile-dropdown">
+                                        <button class="profile-btn">
+                                            <i class="ti-user"></i> {{ Auth::user()->name }}
+                                        </button>
+                                        <div class="profile-dropdown-content">
+                                            <a href="{{ route('user.logout') }}">
+                                                <i class="ti-power-off"></i> Logout
+                                            </a>
+                                        </div>
+                                    </li>
+                                @else
+                                    <li>
+                                        <i class="ti-power-off"></i>
+                                        <a href="{{ route('login.form') }}">Login</a> /
+                                        <a href="{{ route('register.form') }}">Register</a>
+                                    </li>
+                                @endauth
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -82,7 +83,7 @@
                 </div>
                 <div class="col-lg-8 col-md-7 col-12">
                     <div class="search-bar-top">
-                        <div class="search-bar">
+                        <div class="search-bar d-flex flex-wrap justify-content-center">
                             <select>
                                 <option>Semua Kategori</option>
                                 @foreach(Helper::getAllCategory() as $cat)
@@ -116,7 +117,7 @@
                             <!--/ End Shopping Item -->
                         </div>
 
-                        <div class="sinlge-bar shopping">
+                        <div class="single-bar shopping">
                             <a href="{{route('cart')}}" class="single-icon"><i class="ti-bag"></i> <span
                                     class="total-count">{{Helper::cartCount()}}</span></a>
                             <!-- Shopping Item -->
@@ -149,7 +150,7 @@
                                         <span class="total-amount">Rp.
                                             {{number_format(Helper::totalCartPrice(),2)}}</span>
                                     </div>
-                                    <a href="{{route('checkout')}}" class="btn animate">Checkout</a>
+                                    <a href="{{route('checkout')}}" class="btn animate desktop-checkout">Checkout</a>
                                 </div>
                             </div>
                             @endauth
@@ -174,6 +175,11 @@
                                         <ul class="nav main-menu menu navbar-nav">
                                             <li class="{{Request::path()=='home' ? 'active' : ''}}"><a
                                                     href="{{route('home')}}">Beranda</a></li>
+                                            @auth
+                                                <li class="mobile-only">
+                                                    <a href="{{ route('checkout') }}"><i class="ti-credit-card"></i> Checkout</a>
+                                                </li>
+                                            @endauth
                                             <li class="{{Request::path()=='about-us' ? 'active' : ''}}"><a
                                                     href="{{route('about-us')}}">Tentang</a></li>
                                             <li
