@@ -125,16 +125,19 @@
                                     <li class="order_subtotal" data-price="{{Helper::totalCartPrice()}}">Subtotal
                                         Keranjang<span>Rp{{number_format(Helper::totalCartPrice(),2)}}</span></li>
                                     <li class="shipping">
-                                        Biaya Pengiriman
+                                        Pengiriman
                                         @if(count(Helper::shipping())>0 && Helper::cartCount()>0)
                                         <select name="shipping" class="nice-select">
-                                            <option value="">Pilih alamat Anda</option>
+                                            <option value="">Pilih Pengiriman</option>
                                             @foreach(Helper::shipping() as $shipping)
                                             <option value="{{$shipping->id}}" class="shippingOption"
-                                                data-price="{{$shipping->price}}">{{$shipping->type}}:
+                                                data-price="{{$shipping->price}}">{{$shipping->name}}:
                                                 Rp{{$shipping->price}}</option>
                                             @endforeach
                                         </select>
+                                        @error('shipping')
+                                            <span class='text-danger'>{{$message}}</span>
+                                        @enderror
                                         @else
                                         <span>Gratis</span>
                                         @endif

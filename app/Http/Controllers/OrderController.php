@@ -54,7 +54,19 @@ class OrderController extends Controller
             'coupon' => 'nullable|numeric',
             'phone' => 'numeric|required',
             'post_code' => 'string|nullable',
-            'email' => 'string|required',
+            'email' => 'string|required|email',
+            'shipping' => 'required|exists:shippings,id',
+        ], [
+            'first_name.required' => 'Nama depan wajib diisi.',
+            'last_name.required' => 'Nama belakang wajib diisi.',
+            'address1.required' => 'Alamat baris pertama wajib diisi.',
+            'phone.required' => 'Nomor telepon wajib diisi.',
+            'phone.numeric' => 'Nomor telepon harus berupa angka.',
+            'email.required' => 'Email wajib diisi.',
+            'email.email' => 'Format email tidak valid.',
+            'shipping.required' => 'Opsi pengiriman wajib dipilih.',
+            'shipping.exists' => 'Opsi pengiriman tidak valid.',
+            'coupon.numeric' => 'Kupon harus berupa angka.',
         ]);
 
         if (empty(Cart::where('user_id', auth()->user()->id)->where('order_id', null)->first())) {

@@ -14,15 +14,16 @@
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
-                    <th>S.N.</th>
-                    <th>Order No.</th>
-                    <th>Name</th>
+                    <th>No</th>
+                    <th>Nomor Pesanan</th>
+                    <th>Nama</th>
                     <th>Email</th>
-                    <th>Quantity</th>
-                    <th>Charge</th>
-                    <th>Total Amount</th>
+                    <th>Jumlah</th>
+                    <th>Biaya</th>
+                    <th>Total Harga</th>
+                    <th>Jasa Kirim</th>
                     <th>Status</th>
-                    <th>Action</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -42,15 +43,16 @@
                     @else
                     <td></td>
                     @endif
+                    <td>{{$order->shipping->name}}</td>
                     <td>
-                        @if($order->status=='new')
-                        <span class="badge badge-primary">{{$order->status}}</span>
-                        @elseif($order->status=='process')
-                        <span class="badge badge-warning">{{$order->status}}</span>
-                        @elseif($order->status=='delivered')
-                        <span class="badge badge-success">{{$order->status}}</span>
+                        @if ($order->status == 'new')
+                            <span class="badge badge-primary">Pesanan Baru</span>
+                        @elseif($order->status == 'process')
+                            <span class="badge badge-warning">Proses</span>
+                        @elseif($order->status == 'delivered')
+                            <span class="badge badge-success">Telah Dikirim</span>
                         @else
-                        <span class="badge badge-danger">{{$order->status}}</span>
+                            <span class="badge badge-danger">Batal</span>
                         @endif
                     </td>
                     <td>
@@ -75,49 +77,49 @@
                 <div class="row">
                     <div class="col-lg-6 col-lx-4">
                         <div class="order-info">
-                            <h4 class="text-center pb-4">ORDER INFORMATION</h4>
+                            <h4 class="text-center pb-4">Info Pesanan</h4>
                             <table class="table">
                                 <tr class="">
-                                    <td>Order Number</td>
+                                    <td>No Pesanan</td>
                                     <td> : {{$order->order_number}}</td>
                                 </tr>
                                 <tr>
-                                    <td>Order Date</td>
+                                    <td>Tanggal Pesanan</td>
                                     <td> : {{$order->created_at->format('D d M, Y')}} at {{$order->created_at->format('g
                                         : i a')}} </td>
                                 </tr>
                                 <tr>
-                                    <td>Quantity</td>
+                                    <td>Jumlah</td>
                                     <td> : {{$order->quantity}}</td>
                                 </tr>
                                 <tr>
-                                    <td>Order Status</td>
+                                    <td>Status Pesanan</td>
                                     <td> : {{$order->status}}</td>
                                 </tr>
                                 @if($order->shipping && $order->shipping->price)
                                 <tr>
-                                    <td>Shipping Charge</td>
+                                    <td>Biaya Kirim</td>
                                     <td> : Rp {{number_format($order->shipping->price, 2)}}</td>
                                 </tr>
                                 @endif
                                 @if($order->coupon)
                                 <tr>
-                                    <td>Coupon</td>
+                                    <td>Kupon</td>
                                     <td> : Rp {{number_format($order->coupon, 2)}}</td>
                                 </tr>
                                 @endif
                                 @if($order->total_amount)
                                 <tr>
-                                    <td>Total Amount</td>
+                                    <td>Total</td>
                                     <td> : Rp {{number_format($order->total_amount, 2)}}</td>
                                 </tr>
                                 @endif
                                 <tr>
-                                    <td>Payment Method</td>
-                                    <td> : @if($order->payment_method=='cod') Cash on Delivery @else Paypal @endif</td>
+                                    <td>Metode Pembayaran</td>
+                                    <td> : @if($order->payment_method=='cod') Cash on Delivery @else Transfer @endif</td>
                                 </tr>
                                 <tr>
-                                    <td>Payment Status</td>
+                                    <td>Status Pembayaran</td>
                                     <td> : {{$order->payment_status}}</td>
                                 </tr>
                             </table>
@@ -126,10 +128,14 @@
 
                     <div class="col-lg-6 col-lx-4">
                         <div class="shipping-info">
-                            <h4 class="text-center pb-4">SHIPPING INFORMATION</h4>
+                            <h4 class="text-center pb-4">Info Pengiriman</h4>
                             <table class="table">
                                 <tr class="">
-                                    <td>Full Name</td>
+                                    <td>Jasa Kirim</td>
+                                    <td> : {{$order->shipping->name}}</td>
+                                </tr>
+                                <tr class="">
+                                    <td>Nama Lengkap</td>
                                     <td> : {{$order->first_name}} {{$order->last_name}}</td>
                                 </tr>
                                 <tr>
@@ -137,19 +143,19 @@
                                     <td> : {{$order->email}}</td>
                                 </tr>
                                 <tr>
-                                    <td>Phone No.</td>
+                                    <td>No. HP</td>
                                     <td> : {{$order->phone}}</td>
                                 </tr>
                                 <tr>
-                                    <td>Address</td>
+                                    <td>Alamat</td>
                                     <td> : {{$order->address1}}, {{$order->address2}}</td>
                                 </tr>
                                 <tr>
-                                    <td>Country</td>
+                                    <td>Kota</td>
                                     <td> : {{$order->country}}</td>
                                 </tr>
                                 <tr>
-                                    <td>Post Code</td>
+                                    <td>Kode Pos</td>
                                     <td> : {{$order->post_code}}</td>
                                 </tr>
                             </table>

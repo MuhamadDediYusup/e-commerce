@@ -18,6 +18,7 @@ class CreateShippingsTable extends Migration
             $table->string('name');
             $table->decimal('price');
             $table->enum('status',['active','inactive'])->default('active');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

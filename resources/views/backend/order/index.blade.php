@@ -24,6 +24,7 @@
                                 <th>Jumlah</th>
                                 <th>Biaya</th>
                                 <th>Total Harga</th>
+                                <th>Jasa Kirim</th>
                                 <th>Status</th>
                                 <th>Aksi</th>
                             </tr>
@@ -37,6 +38,7 @@
                                 <th>Jumlah</th>
                                 <th>Biaya</th>
                                 <th>Total Harga</th>
+                                <th>Jasa Kirim</th>
                                 <th>Status</th>
                                 <th>Aksi</th>
                             </tr>
@@ -60,6 +62,7 @@
                                         @endforeach
                                     </td>
                                     <td>Rp. {{ number_format($order->total_amount, 2) }}</td>
+                                    <td>{{$order->shipping->name}}</td>
                                     <td>
                                         @if ($order->status == 'new')
                                             <span class="badge badge-primary">Pesanan Baru</span>

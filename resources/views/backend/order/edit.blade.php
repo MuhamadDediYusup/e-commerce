@@ -14,17 +14,17 @@
                     <select name="status" id="" class="form-control">
                         <option value="new"
                             {{ $order->status == 'delivered' || $order->status == 'process' || $order->status == 'cancel' ? 'disabled' : '' }}
-                            {{ $order->status == 'new' ? 'selected' : '' }}>New</option>
+                            {{ $order->status == 'new' ? 'selected' : '' }}>Pesanan Baru</option>
                         <option value="process"
                             {{ $order->status == 'delivered' || $order->status == 'cancel' ? 'disabled' : '' }}
-                            {{ $order->status == 'process' ? 'selected' : '' }}>process</option>
+                            {{ $order->status == 'process' ? 'selected' : '' }}>Proses</option>
                         <option value="delivered" {{ $order->status == 'cancel' ? 'disabled' : '' }}
-                            {{ $order->status == 'delivered' ? 'selected' : '' }}>Delivered</option>
+                            {{ $order->status == 'delivered' ? 'selected' : '' }}>Telah Dikirim</option>
                         <option value="cancel" {{ $order->status == 'delivered' ? 'disabled' : '' }}
-                            {{ $order->status == 'cancel' ? 'selected' : '' }}>Cancel</option>
+                            {{ $order->status == 'cancel' ? 'selected' : '' }}>Batal</option>
                     </select>
                 </div>
-                <button type="submit" class="btn btn-success">Update</button>
+                <button type="submit" class="btn btn-success">Ubah</button>
             </form>
         </div>
     </div>
