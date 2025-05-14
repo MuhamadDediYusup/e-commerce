@@ -119,6 +119,7 @@ Route::group(['prefix' => '/admin', 'middleware' => ['auth', 'admin']], function
     // Product
     Route::resource('/product', 'ProductController');
     Route::get('/products/report', [AdminController::class, 'cartReport'])->name('products.report');
+    Route::get('/products/print', [AdminController::class, 'cartReportPrint'])->name('products.print');
     // Ajax for sub category
     Route::post('/category/{id}/child', 'CategoryController@getChildByParent');
 

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use App\Models\Settings;
 use App\User;
@@ -150,21 +152,73 @@ class AdminController extends Controller
         }
     }
 
-    public function cartReport()
+    public function cartReport(Request $request)
     {
+        $month = $request->month;
+        $year = $request->year;
+
         $report = DB::table('carts')
             ->join('products', 'carts.product_id', '=', 'products.id')
+            ->join('orders', 'carts.order_id', '=', 'orders.id')
             ->select(
                 'products.title as product_title',
-                'products.slug as product_slug',
+                'products.id as product_id',
                 DB::raw('SUM(carts.quantity) as total_quantity'),
-                DB::raw('SUM(carts.amount) as total_amount'),
-                DB::raw('COUNT(carts.id) as total_orders')
+                DB::raw('SUM(carts.price * carts.quantity) as total_amount'),
+                DB::raw('COUNT(DISTINCT carts.order_id) as total_orders'),
+                DB::raw('MAX(carts.created_at) as last_created_at')
             )
-            ->groupBy('carts.product_id', 'products.title', 'products.slug')
-            ->orderBy('total_quantity', 'desc')
-            ->paginate(50);
+            ->where('carts.status', 'delivered');
+
+        if ($month && $year) {
+            $report->whereMonth('orders.created_at', $month)
+                ->whereYear('orders.created_at', $year);
+        } elseif ($month) {
+            $report->whereMonth('orders.created_at', $month);
+        } elseif ($year) {
+            $report->whereYear('orders.created_at', $year);
+        }
+
+        $report = $report->groupBy('products.id', 'products.title')
+            ->paginate(10);
 
         return view('backend.report.product', compact('report'));
+    }
+
+    public function cartReportPrint(Request $request)
+    {
+        $month = $request->month;
+        $year = $request->year;
+
+        $setting = Settings::first();
+
+        $report = DB::table('carts')
+            ->join('products', 'carts.product_id', '=', 'products.id')
+            ->join('orders', 'carts.order_id', '=', 'orders.id')
+            ->select(
+                'products.title as product_title',
+                'products.id as product_id',
+                DB::raw('SUM(carts.quantity) as total_quantity'),
+                DB::raw('SUM(carts.price * carts.quantity) as total_amount'),
+                DB::raw('COUNT(DISTINCT carts.order_id) as total_orders'),
+                DB::raw('MAX(carts.created_at) as last_created_at')
+            )
+            ->where('carts.status', 'delivered');
+
+        if ($month && $year) {
+            $report->whereMonth('orders.created_at', $month)
+                ->whereYear('orders.created_at', $year);
+        } elseif ($month) {
+            $report->whereMonth('orders.created_at', $month);
+        } elseif ($year) {
+            $report->whereYear('orders.created_at', $year);
+        }
+
+        $report = $report->groupBy('products.id', 'products.title')
+            ->get();
+
+
+        $pdf = Pdf::loadView('backend.report.product-pdf', compact('report', 'month', 'year', 'setting'));
+        return $pdf->stream('laporan_penjualan_' . Carbon::createFromDate($year, $month, 1)->translatedFormat('F') . '_' . $year . '.pdf');
     }
 }
