@@ -168,7 +168,7 @@ class AdminController extends Controller
                 DB::raw('COUNT(DISTINCT carts.order_id) as total_orders'),
                 DB::raw('MAX(carts.created_at) as last_created_at')
             )
-            ->where('carts.status', 'delivered');
+            ->where('orders.payment_status', 'paid');
 
         if ($month && $year) {
             $report->whereMonth('orders.created_at', $month)
@@ -203,7 +203,7 @@ class AdminController extends Controller
                 DB::raw('COUNT(DISTINCT carts.order_id) as total_orders'),
                 DB::raw('MAX(carts.created_at) as last_created_at')
             )
-            ->where('carts.status', 'delivered');
+            ->where('orders.payment_status', 'paid');
 
         if ($month && $year) {
             $report->whereMonth('orders.created_at', $month)
