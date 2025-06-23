@@ -2,7 +2,7 @@
 
 @section('main-content')
     <div class="card">
-        <h5 class="card-header">Ubah Pengiriman</h5>
+        <h5 class="card-header">Ubah Biaya Pengiriman</h5>
         <div class="card-body">
             <form method="post" action="{{ route('shipping.update', $shipping->id) }}">
                 @csrf

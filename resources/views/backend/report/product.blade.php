@@ -1,3 +1,9 @@
+@php
+    $totalAmount = 0;
+    foreach ($report as $r) {
+        $totalAmount += $r->total_amount;
+    }
+@endphp
 @extends('backend.layouts.master')
 
 @section('main-content')
@@ -71,6 +77,11 @@
                         @endforeach
                         </tbody>
                     </table>
+                    <div class="mt-3">
+                        <h5 class="text-right font-weight-bold">
+                            Total Keseluruhan Pembelian: <span class="text-success">{{ 'Rp' . number_format($totalAmount, 2, ',', '.') }}</span>
+                        </h5>
+                    </div>
                     <span style="float:right">{{ $report->links() }}</span>
                 @else
                     <h6 class="text-center">Tidak ada laporan yang ditemukan!!!</h6>
