@@ -269,7 +269,6 @@ class OrderController extends Controller
         if ($request->status == 'delivered') {
             foreach ($order->cart as $cart) {
                 $product = $cart->product;
-                // return $product;
                 $product->stock -= $cart->quantity;
                 $product->save();
             }
